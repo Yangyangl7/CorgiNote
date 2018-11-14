@@ -56,7 +56,7 @@ along with a very brief caption:**
 <!-- ![](https://media.giphy.com/media/26ufnwz3wDUli7GU0/giphy.gif) -->
 
 
-**Here are the web view and the mobile view wireframes of our app:**
+**Here are the web view mockups and the mobile view wireframes of our app:**
 
 ***Web View 1 - Sign Up Page***
 ![Sign Up Page](/prototype/1_signUpPage.png?raw=true "Sign Up Page")
@@ -67,7 +67,7 @@ along with a very brief caption:**
 ***Web View 3 - Create Note Page***
 ![Create Note Page](/prototype/3_createNotePage.png?raw=true "Create Note Page")
 
-***Mobile view Wireframe***
+***Mobile View Wireframe***
 ![Mobile User Flow](/prototype/mobile_overveiw.png?raw=true "Mobile User Flow")
 
 ## External Dependencies
