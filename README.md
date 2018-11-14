@@ -4,14 +4,17 @@ CSCI 5117, Fall 2018, [assignment description](https://docs.google.com/document/
 
 ## App Info:
 
-* Team Name: TODO
-* App Name: TODO
+* Team Name: Mooncake
+* App Name: Corgi Note
 * App Link: <https://TODO.firebaseapp.com/>
 
 ### Students
 
-* First Last, x500@umn.edu
-* ...
+* William Batu (batux002)
+* Yuhao Li (lixx4793)
+* Yangyang Luo (luo00130)
+* Wenjing Chen (chen5431)
+* Chen Chen (chen4625)
 
 
 ## Key Features
@@ -19,11 +22,12 @@ CSCI 5117, Fall 2018, [assignment description](https://docs.google.com/document/
 **Describe the most challenging features you implemented
 (one sentence per bullet, maximum 4 bullets):**
 
-* ...
+* CRUD notes
+* Comment and share notes
 
 Which device integration(s) does your app support?
 
-* ...
+* Device built-in camera
 
 Which progressive web app feature(s) does your app support?
 
@@ -47,10 +51,18 @@ along with a very brief caption:**
 
 ## Paper Prototype
 
-**[Add images/photos that show your paper prototype (maximum 4)](https://stackoverflow.com/questions/10189356/how-to-add-screenshot-to-readmes-in-github-repository) along with a very brief caption:**
+<!-- **[Add images/photos that show your paper prototype (maximum 4)](https://stackoverflow.com/questions/10189356/how-to-add-screenshot-to-readmes-in-github-repository) along with a very brief caption:** -->
 
-![](https://media.giphy.com/media/26ufnwz3wDUli7GU0/giphy.gif)
+<!-- ![](https://media.giphy.com/media/26ufnwz3wDUli7GU0/giphy.gif) -->
 
+
+**Here are the web view and the mobile wireframe of our app:**
+
+***Web View***
+<!-- ![User Flow](/prototype/.png?raw=true "User Flow") -->
+
+***Mobile Wireframe***
+![User Flow](/prototype/mobile_overveiw.png?raw=true "User Flow")
 
 ## External Dependencies
 
