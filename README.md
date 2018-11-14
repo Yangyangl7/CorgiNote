@@ -58,8 +58,14 @@ along with a very brief caption:**
 
 **Here are the web view and the mobile wireframe of our app:**
 
-***Web View***
-<!-- ![User Flow](/prototype/.png?raw=true "User Flow") -->
+***Web View 1 - Sign Up Page***
+![Sign Up Page](/prototype/1_signUpPage.png?raw=true "Sign Up Page")
+
+***Web View 2 - Note Page***
+![Note Page](/prototype/2_notePage.png?raw=true "Note Page")
+
+***Web View 3 - Create Note Page***
+![Create Note Page](/prototype/3_createNotePage.png?raw=true "Create Note Page")
 
 ***Mobile Wireframe***
 ![User Flow](/prototype/mobile_overveiw.png?raw=true "User Flow")
