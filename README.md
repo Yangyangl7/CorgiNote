@@ -68,7 +68,7 @@ along with a very brief caption:**
 ![Create Note Page](/prototype/3_createNotePage.png?raw=true "Create Note Page")
 
 ***Mobile Wireframe***
-![User Flow](/prototype/mobile_overveiw.png?raw=true "User Flow")
+![Mobile User Flow](/prototype/mobile_overveiw.png?raw=true "Mobile User Flow")
 
 ## External Dependencies
 
