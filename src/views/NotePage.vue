@@ -7,13 +7,13 @@
       <div class = "currentCourse" >
         {{courseName | snippet}}
       </div>
-    <div>
+    </div>
 
   </div>
 </template>
 
 <script>
-import SlideBar from '@/components/SliderBar.vue'
+import SlideBar from '@/components/SlideBar.vue'
 
 export default {
   components: {
