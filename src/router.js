@@ -3,10 +3,13 @@ import Router from 'vue-router'
 import Signup from '@/views/Signup'
 import Login from '@/views/Login'
 import CoursePage from '@/views/CoursePage'
+import { auth } from '@/firebase/init'
+
+Vue.config.devtools = true;
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   // base: process.env.BASE_URL,
   routes: [{
@@ -30,3 +33,13 @@ export default new Router({
     }
   ]
 })
+
+// router.beforeEach((to, from, next => {
+//   let currentUser = auth.currentUser;
+//   let requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+
+//   if (!currentUser && requiresAuth) next('/login');
+//   else next();
+
+// }))
+
