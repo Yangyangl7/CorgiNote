@@ -2,44 +2,63 @@
   <div class="navbar">
     <nav class="nav-wrapper white">
       <div class="container">
-        <a class="brand-logo">Corgi Note</a>
+        <a class="brand-logo">
+          <router-link :to="{ name: 'CoursePage' }">Corgi Note</router-link>
+        </a>
         <a href="#" class="sidenav-trigger">
           <i class="material-icons" @click="openNav">menu</i>
         </a>
         <ul class="right hide-on-med-and-down">
-          <li>
+          <li v-if="!user">
             <router-link :to="{ name: 'Login' }">
               <span class="log-in">Log in</span>
             </router-link>
           </li>
-          <li>
+          <li v-if="!user">
             <router-link :to="{ name: 'Signup' }">
               <span class="sign-up">Sign up</span>
             </router-link>
           </li>
-          <!-- <li v-if="user"><a>{{ user.email }}</a></li>
-          <li v-if="user"><a @click="logout">LOGOUT</a></li>-->
+          <li v-if="user">
+            <a class="user-email">{{ user.email }}</a>
+          </li>
+          <li v-if="user">
+            <a @click="logout">Log out</a>
+          </li>
         </ul>
       </div>
     </nav>
 
     <ul class id="sidenav" ref="sidenav">
       <a href="javascript:void(0)" @click="closeNav" class="closebtn">&times;</a>
-      <li>
+      <li v-if="user">
+        <a class="sidenav-account">Account:
+          <br>
+          {{ user.email }}
+        </a>
+      </li>
+      <li v-if="!user">
         <router-link :to="{ name: 'Login' }">Log in</router-link>
       </li>
-      <li>
+      <li v-if="!user">
         <router-link :to="{ name: 'Signup' }">Sign up</router-link>
+      </li>
+      <li v-if="user">
+        <a @click="logout">Log out</a>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import { auth } from "@/firebase/init";
+
 export default {
   name: "Navbar",
   data() {
-    return {};
+    return {
+      user: null
+    };
   },
   methods: {
     openNav() {
@@ -47,7 +66,24 @@ export default {
     },
     closeNav() {
       this.$refs.sidenav.style.width = "0";
+    },
+    logout() {
+      auth
+        .signOut()
+        .then(() => {
+          this.$router.replace("/");
+        });
     }
+  },
+  created() {
+    auth.onAuthStateChanged(user => {
+      console.log("this is user:", user);
+      if (user) {
+        this.user = user;
+      } else {
+        this.user = null;
+      }
+    });
   }
 };
 </script>
@@ -60,11 +96,13 @@ export default {
 .navbar ul li a {
   color: rgba(0, 0, 0, 0.6);
   font-weight: 500;
+  transition: all linear 0.2s;
 }
 
 .navbar ul li a:hover,
 .navbar ul li a:focus {
   background-color: transparent;
+  color: #e0903e;
 }
 
 .navbar .white {
@@ -100,6 +138,16 @@ export default {
   font-size: 1.5rem;
 }
 
+.navbar ul li .user-email {
+  cursor: unset;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.navbar ul li .user-email:hover,
+.navbar ul li .user-email:focus {
+  color: rgba(0, 0, 0, 0.8);
+}
+
 #sidenav {
   background-color: #111;
   height: 100vh;
@@ -121,6 +169,7 @@ export default {
   color: #818181;
   display: block;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 #sidenav a:hover,
@@ -139,5 +188,14 @@ export default {
 #sidenav .closebtn:hover,
 #sidenav .closebtn:focus {
   transform: scale(1.2);
+}
+#sidenav .sidenav-account {
+  font-size: 1.2rem;
+  cursor: unset;
+  margin-top: -20px;
+}
+#sidenav .sidenav-account:hover,
+#sidenav .sidenav-account:focus {
+  color: #818181;
 }
 </style>
