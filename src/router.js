@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Signup from '@/views/Signup'
 import Login from '@/views/Login'
 import CoursePage from '@/views/CoursePage'
+import NotePage from '@/views/NotePage'
 
 Vue.use(Router)
 
@@ -27,6 +28,14 @@ export default new Router({
         requireAuth: true
       }
 
+    },
+    {
+      path: '/course/:courseName',
+      name: 'NotePage',
+      component: NotePage,
+      meta: {
+        requireAuth: true
+      }
     }
   ]
 })
