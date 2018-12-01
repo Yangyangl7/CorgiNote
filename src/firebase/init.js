@@ -11,11 +11,15 @@ var config = {
     messagingSenderId: "406428669708"
 };
 
-
+const provider = new firebase.auth.GoogleAuthProvider();
 const firebaseApp = firebase.initializeApp(config);
 
 firebaseApp.firestore().settings({
     timestampsInSnapshots: true
 })
+
+export {
+    provider
+};
 
 export default firebaseApp.firestore()
