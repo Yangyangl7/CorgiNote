@@ -3,10 +3,13 @@ import Router from 'vue-router'
 import Signup from '@/views/Signup'
 import Login from '@/views/Login'
 import CoursePage from '@/views/CoursePage'
+import ErrorPage from '@/views/ErrorPage'
+import firebase from 'firebase'
 
 Vue.use(Router)
 
-export default new Router({
+
+const router = new Router({
   mode: 'history',
   // base: process.env.BASE_URL,
   routes: [{
@@ -26,7 +29,36 @@ export default new Router({
       meta: {
         requireAuth: true
       }
-
+    },
+    {
+      path: '/404',
+      name: 'ErrorPage',
+      component: ErrorPage
+    },
+    {
+      path: '*',
+      redirect: '/404'
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  //check to see if route requires auth
+  if (to.matched.some(rec => rec.meta.requireAuth)) {
+    //check auth state of user
+    let user = firebase.auth().currentUser
+    if (user) {
+      // user signed in, proceed to route
+      next()
+    } else {
+      // no user signed in, redirect to login
+      next({
+        name: 'Signup'
+      })
+    }
+  } else {
+    next()
+  }
+})
+
+export default router
