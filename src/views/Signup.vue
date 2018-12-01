@@ -25,7 +25,7 @@
                 style="margin-bottom: 10px;"
               >
             </div>
-            <div class="feedback" v-if="feedback">{{ feedback }}</div>
+            <div class="feedback red-text" v-if="feedback">{{ feedback }}</div>
             <div style="display: flex;align-items: center;justify-content: space-between;">
               <div class="field">
                 <button class="btn">Sign Up</button>
@@ -34,13 +34,10 @@
                 <p>-or-</p>
               </div>
               <div class="field">
-                <button class="btn">Login With Google</button>
+                <button class="btn" @click="googleLogin">Login With Google</button>
               </div>
             </div>
           </form>
-          <!-- <div class="field google-login">
-            <button class="btn" @click="googleLogin">Login With Google</button>
-          </div>-->
         </div>
         <div class="col l6 m12 s12 signup-right">
           <img src="@/assets/signup.png" alt="signup corgi" height="300">
@@ -51,8 +48,7 @@
 </template>
 
 <script>
-import db from "@/firebase/init";
-import firebase from "firebase";
+import { provider, db, auth } from "@/firebase/init";
 
 export default {
   name: "Signup",
@@ -63,13 +59,17 @@ export default {
       feedback: null
     };
   },
-  created() {},
+  created() {
+    var user = auth.currentUser;
+    if (user) {
+      this.$router.replace("course");
+    }
+  },
   methods: {
     signup() {
       if (this.email && this.password) {
         let ref = db.collection("users").doc(this.email);
-        firebase
-          .auth()
+        auth
           .createUserWithEmailAndPassword(this.email, this.password)
           .then(cred => {
             ref.set({
@@ -87,6 +87,23 @@ export default {
       } else {
         this.feedback = "Please enter all fields.";
       }
+    },
+    googleLogin() {
+      auth
+        .signInWithPopup(provider)
+        .then(result => {
+          db.collection("users")
+            .doc(result.user.email)
+            .set({
+              user_id: result.user.uid
+            });
+        })
+        .then(() => {
+          this.router.replace("course");
+        })
+        .catch(err => {
+          this.feedback = err.message;
+        });
     }
   }
 };
