@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar">
+  <div class="navbar navbar-fixed">
     <nav class="nav-wrapper white">
       <div class="container">
         <a class="brand-logo">
@@ -74,11 +74,9 @@ export default {
       this.$refs.sidenav.style.width = "0";
     },
     logout() {
-      auth
-        .signOut()
-        .then(() => {
-          this.$router.replace("/");
-        });
+      auth.signOut().then(() => {
+        this.$router.replace("/");
+      });
     }
   },
   created() {

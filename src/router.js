@@ -4,10 +4,12 @@ import Signup from '@/views/Signup'
 import Login from '@/views/Login'
 import CoursePage from '@/views/CoursePage'
 import ErrorPage from '@/views/ErrorPage'
-import NewCoursePage from '@/views/NewCourse'
+import NewCourse from '@/views/NewCourse'
 import NotePage from '@/views/NotePage'
 
-import { auth } from '@/firebase/init'
+import {
+  auth
+} from '@/firebase/init'
 
 Vue.config.devtools = true;
 
@@ -34,14 +36,14 @@ const router = new Router({
         requireAuth: true
       }
     },
-    {
-      path: '/course/:courseName',
-      name: 'NotePage',
-      component: NotePage,
-      meta: {
-        requireAuth: true
-      }
-    },
+    // {
+    //   path: '/course/:courseName',
+    //   name: 'NotePage',
+    //   component: NotePage,
+    //   meta: {
+    //     requireAuth: true
+    //   }
+    // },
     {
       path: '/404',
       name: 'ErrorPage',
@@ -54,7 +56,10 @@ const router = new Router({
     {
       path: "/course/new",
       name: 'NewCourse',
-      component: NewCoursePage
+      component: NewCourse,
+      meta: {
+        requireAuth: true
+      }
     }
   ]
 })
