@@ -11,12 +11,17 @@
             </div>
             <div class="row">
               <div class="input-field cols s12">
-                <input placeholder="Course Name" type="text" class="validate" v-model="name" required>
+                <input placeholder="Label Name" type="text" class="validate" v-model="label" required>
+              </div>
+            </div>
+             <div class="row">
+              <div class="input-field cols s12">
+                <input placeholder="Course Number" type="text" class="validate" v-model="courseId" required>
               </div>
             </div>
             <div class="row">
               <div class="input-field cols s12">
-                <input placeholder="Course Number" type="text" class="validate" v-model="courseId" required>
+                <input placeholder="Course Name" type="text" class="validate" v-model="name" required>
               </div>
             </div>
             <button type="submit" class="btn">Save</button>
@@ -34,23 +39,36 @@ export default {
     data () {
         return {
           univName: null,
+          label: null,
           name: null,
           courseId: null,
+          semester: null,
           user: auth.currentUser.email
         }
     },
     methods: {
       saveCourse () {
-        let self = this;
+        var month = new Date().getMonth();
+
+        if (month <= '12' && month >= '6') {
+          this.semester = '2';
+        }
+        else {
+          this.semester = '1';
+        }
+
         db
           .collection("users")
-          .doc(self.user)
+          .doc(this.user)
           .collection("courses")
           .add({
             univName : this.univName,
             name: this.name,
-            courseId : this.courseId,
-            timestamp: new Date().toLocaleString()
+            label: this.label,
+            courseId: this.courseId,
+            semester: this.semester,
+            year: new Date().getFullYear(),
+            createdTime: new Date().toLocaleString()
           })
           .then(() => {
             this.$router.push({name: 'CoursePage'})
