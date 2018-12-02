@@ -62,7 +62,7 @@ export default {
 
 <style scoped>
   .newBtn {
-    margin: auto;
+    margin: 10px auto;
     width: 50%;
   }
 

@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { provider, db, auth } from "@/firebase/init";
+import { auth } from "@/firebase/init";
 
 export default {
   name: "Login",
@@ -43,7 +43,7 @@ export default {
       if (this.loginEmail && this.loginPassword) {
         auth
           .signInWithEmailAndPassword(this.loginEmail, this.loginPassword)
-          .then(cred => {
+          .then(function () {
             this.$router.replace("course");
             // console.log(cred.user);
           })
