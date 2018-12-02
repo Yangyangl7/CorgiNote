@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="col s12 m4 l3" style = "background-color: grey; height: 93vh; padding 10px">
     <div class = "currentCourse" >
       {{courseName | snippet}}
     </div>
@@ -38,3 +38,14 @@ export default {
   }
 }
 </script>
+
+
+<style scoped>
+  .container{
+    width: 30%;
+    height: 100%;
+    background-color: wheat;
+    display: inline-block;
+  }
+
+</style>
