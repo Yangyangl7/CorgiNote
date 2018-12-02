@@ -2,11 +2,19 @@
   <div class="coursePage">
 
     <ul class="collection" v-for="course in myCourses" :key="course.id">
-      <li class="collection-item">{{ course.name }}</li>
+      <li class="collection-item">
+        <span>
+          {{ course.year }}-Semester {{ course.semester }}-{{ course.label }}-{{ course.name }}
+        </span>
+        <router-link :to="{ name: 'UploadPage', params: { course: course.id } }" class="btn-note">
+          <i class="material-icons left">edit</i>
+          View/Edit/Add note
+        </router-link>
+      </li>
     </ul>
     <div class="newBtn">
-      <router-link to="/course/new" class="btn-floating btn-medium waves-effect waves-light red">
-        <i class="material-icons">add</i>
+      <router-link to="/new" class="btn-large waves-effect waves-light btn-course">
+        <i class="material-icons left">add</i>Create course
       </router-link>
     </div>
   
@@ -39,7 +47,11 @@ export default {
         .then(function(querySnapshot) {
           querySnapshot.forEach(function(doc) {
               self.myCourses.push ({
-                name: doc.data().name
+                id: doc.id,
+                name: doc.data().name,
+                year: doc.data().year,
+                label: doc.data().label,
+                semester: doc.data().semester
               })         
           });
         })
@@ -49,14 +61,23 @@ export default {
 </script>
 
 <style scoped>
-  .newBtn{
+  .newBtn {
     margin: auto;
     width: 50%;
   }
 
-  .btn-floating{
+  .btn-course {
     position: absolute;
     left: 50%;
-    margin-left: -28px;
+    margin-left: -115px;
+  }
+
+  .collection {
+    margin: 10px auto;
+    width: 50%;
+  }
+
+  .btn-note {
+    float: right;
   }
 </style>

@@ -83,7 +83,6 @@ export default {
   },
   created() {
     auth.onAuthStateChanged(user => {
-      console.log("this is user:", user);
       if (user) {
         this.user = user;
       } else {
