@@ -4,6 +4,7 @@ import Signup from '@/views/Signup'
 import Login from '@/views/Login'
 import CoursePage from '@/views/CoursePage'
 import ErrorPage from '@/views/ErrorPage'
+import NewCoursePage from '@/views/NewCourse'
 
 import { auth } from '@/firebase/init'
 
@@ -40,6 +41,11 @@ const router = new Router({
     {
       path: '*',
       redirect: '/404'
+    },
+    {
+      path: "/course/new",
+      name: 'NewCourse',
+      component: NewCoursePage
     }
   ]
 })
