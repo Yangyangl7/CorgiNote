@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar">
+  <div class="navbar navbar-fixed">
     <nav class="nav-wrapper white">
       <div class="container">
         <a class="brand-logo">
@@ -23,6 +23,9 @@
             <a class="user-email">{{ user.email }}</a>
           </li>
           <li v-if="user">
+            <router-link :to="{ name: 'CoursePage' }">Courses</router-link>
+          </li>
+          <li v-if="user">
             <a @click="logout">Log out</a>
           </li>
         </ul>
@@ -42,6 +45,9 @@
       </li>
       <li v-if="!user">
         <router-link :to="{ name: 'Signup' }">Sign up</router-link>
+      </li>
+      <li v-if="user">
+        <router-link :to="{ name: 'CoursePage' }">Courses</router-link>
       </li>
       <li v-if="user">
         <a @click="logout">Log out</a>
@@ -68,16 +74,13 @@ export default {
       this.$refs.sidenav.style.width = "0";
     },
     logout() {
-      auth
-        .signOut()
-        .then(() => {
-          this.$router.replace("/");
-        });
+      auth.signOut().then(() => {
+        this.$router.replace("/");
+      });
     }
   },
   created() {
     auth.onAuthStateChanged(user => {
-      console.log("this is user:", user);
       if (user) {
         this.user = user;
       } else {
@@ -153,7 +156,7 @@ export default {
   height: 100vh;
   width: 0;
   position: fixed;
-  z-index: 1;
+  z-index: 999;
   top: 0;
   left: 0;
   overflow-x: hidden;
@@ -167,6 +170,7 @@ export default {
   text-decoration: none;
   font-size: 1.5rem;
   color: #818181;
+  color: #fff;
   display: block;
   transition: 0.3s;
   cursor: pointer;
@@ -193,6 +197,7 @@ export default {
   font-size: 1.2rem;
   cursor: unset;
   margin-top: -20px;
+  color: #818181;
 }
 #sidenav .sidenav-account:hover,
 #sidenav .sidenav-account:focus {

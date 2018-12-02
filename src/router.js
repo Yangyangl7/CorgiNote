@@ -4,9 +4,13 @@ import Signup from '@/views/Signup'
 import Login from '@/views/Login'
 import CoursePage from '@/views/CoursePage'
 import ErrorPage from '@/views/ErrorPage'
+import NewCoursePage from '@/views/NewCourse'
 import NotePage from '@/views/NotePage'
+import UploadPage from '@/views/UploadPage'
 
-import { auth } from '@/firebase/init'
+import {
+  auth
+} from '@/firebase/init'
 
 Vue.config.devtools = true;
 
@@ -14,7 +18,6 @@ Vue.use(Router)
 
 const router = new Router({
   mode: 'history',
-  // base: process.env.BASE_URL,
   routes: [{
       path: '/',
       name: 'Signup',
@@ -49,6 +52,22 @@ const router = new Router({
     {
       path: '*',
       redirect: '/404'
+    },
+    {
+      path: "/new",
+      name: 'NewCourse',
+      component: NewCoursePage,
+      meta: {
+        requireAuth: true
+      }
+    },
+    {
+      path: "/note/:course",
+      name: 'UploadPage',
+      component: UploadPage,
+      meta: {
+        requireAuth: true
+      }
     }
   ]
 })
