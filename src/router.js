@@ -5,6 +5,7 @@ import Login from '@/views/Login'
 import CoursePage from '@/views/CoursePage'
 import ErrorPage from '@/views/ErrorPage'
 import NewCoursePage from '@/views/NewCourse'
+import NotePage from '@/views/NotePage'
 
 import { auth } from '@/firebase/init'
 
@@ -29,6 +30,14 @@ const router = new Router({
       path: '/course',
       name: 'CoursePage',
       component: CoursePage,
+      meta: {
+        requireAuth: true
+      }
+    },
+    {
+      path: '/course/:courseName',
+      name: 'NotePage',
+      component: NotePage,
       meta: {
         requireAuth: true
       }
