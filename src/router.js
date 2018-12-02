@@ -8,7 +8,9 @@ import NewCoursePage from '@/views/NewCourse'
 import NotePage from '@/views/NotePage'
 import UploadPage from '@/views/UploadPage'
 
-import { auth } from '@/firebase/init'
+import {
+  auth
+} from '@/firebase/init'
 
 Vue.config.devtools = true;
 
