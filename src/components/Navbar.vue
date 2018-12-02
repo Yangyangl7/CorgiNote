@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import firebase from "firebase";
+import { auth } from "@/firebase/init";
 
 export default {
   name: "Navbar",
@@ -74,8 +74,7 @@ export default {
       this.$refs.sidenav.style.width = "0";
     },
     logout() {
-      firebase
-        .auth()
+      auth
         .signOut()
         .then(() => {
           this.$router.replace("/");
@@ -83,7 +82,7 @@ export default {
     }
   },
   created() {
-    firebase.auth().onAuthStateChanged(user => {
+    auth.onAuthStateChanged(user => {
       console.log("this is user:", user);
       if (user) {
         this.user = user;

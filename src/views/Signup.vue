@@ -38,9 +38,6 @@
               </div>
             </div>
           </form>
-          <!-- <div class="field google-login">
-            <button class="btn" @click="googleLogin">Login With Google</button>
-          </div>-->
         </div>
         <div class="col l6 m12 s12 signup-right">
           <img src="@/assets/signup.png" alt="signup corgi" height="300">
@@ -51,9 +48,7 @@
 </template>
 
 <script>
-import db from "@/firebase/init";
-import firebase from "firebase";
-import { provider } from "@/firebase/init";
+import { provider, db, auth } from "@/firebase/init";
 
 export default {
   name: "Signup",
@@ -65,7 +60,7 @@ export default {
     };
   },
   created() {
-    var user = firebase.auth().currentUser;
+    var user = auth.currentUser;
     if (user) {
       this.$router.replace("course");
     }
@@ -74,8 +69,7 @@ export default {
     signup() {
       if (this.email && this.password) {
         let ref = db.collection("users").doc(this.email);
-        firebase
-          .auth()
+        auth
           .createUserWithEmailAndPassword(this.email, this.password)
           .then(cred => {
             ref.set({
@@ -95,8 +89,7 @@ export default {
       }
     },
     googleLogin() {
-      firebase
-        .auth()
+      auth
         .signInWithPopup(provider)
         .then(result => {
           db.collection("users")

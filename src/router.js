@@ -4,10 +4,14 @@ import Signup from '@/views/Signup'
 import Login from '@/views/Login'
 import CoursePage from '@/views/CoursePage'
 import ErrorPage from '@/views/ErrorPage'
-import firebase from 'firebase'
+import NewCoursePage from '@/views/NewCourse'
+import NotePage from '@/views/NotePage'
+
+import { auth } from '@/firebase/init'
+
+Vue.config.devtools = true;
 
 Vue.use(Router)
-
 
 const router = new Router({
   mode: 'history',
@@ -31,6 +35,14 @@ const router = new Router({
       }
     },
     {
+      path: '/course/:courseName',
+      name: 'NotePage',
+      component: NotePage,
+      meta: {
+        requireAuth: true
+      }
+    },
+    {
       path: '/404',
       name: 'ErrorPage',
       component: ErrorPage
@@ -38,6 +50,11 @@ const router = new Router({
     {
       path: '*',
       redirect: '/404'
+    },
+    {
+      path: "/course/new",
+      name: 'NewCourse',
+      component: NewCoursePage
     }
   ]
 })
@@ -46,7 +63,7 @@ router.beforeEach((to, from, next) => {
   //check to see if route requires auth
   if (to.matched.some(rec => rec.meta.requireAuth)) {
     //check auth state of user
-    let user = firebase.auth().currentUser
+    let user = auth.currentUser
     if (user) {
       // user signed in, proceed to route
       next()
