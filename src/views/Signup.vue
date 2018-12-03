@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col l6 m12 s12 signup-left">
           <h4>Create Account</h4>
-          <form @submit.prevent="signup" class="signup">
+          <form @submit.prevent class="signup">
             <div class="field">
               <label for="email">Email Address</label>
               <input type="email" name="email" v-model="email">
@@ -26,9 +26,12 @@
               >
             </div>
             <div class="feedback red-text" v-if="feedback">{{ feedback }}</div>
-            <div style="display: flex;align-items: center;justify-content: space-between;">
+            <div
+              style="display: flex;align-items: center;justify-content: space-between;"
+              id="signup-button"
+            >
               <div class="field">
-                <button class="btn">Sign Up</button>
+                <button class="btn" @click="signup">Sign Up</button>
               </div>
               <div class="field">
                 <p>-or-</p>
@@ -89,6 +92,7 @@ export default {
       }
     },
     googleLogin() {
+      this.feedback = null;
       auth
         .signInWithPopup(provider)
         .then(result => {
@@ -183,7 +187,15 @@ h5 {
   padding-left: 30px;
 }
 
+/* .field p {
+  color: red;
+} */
+
 @media screen and (max-width: 992px) {
+  .col .field button {
+    /* font-size: 11px; */
+  }
+
   .signup-right img {
     position: absolute;
     top: 22rem;
