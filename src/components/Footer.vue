@@ -16,7 +16,7 @@ export default {
 .container p {
   position: absolute;
   width: 40rem;
-  /* bottom: 5px; */
+  bottom: 5px;
   left: 50%;
   margin-left: -11rem;
   color: rgba(0, 0, 0, 0.3);

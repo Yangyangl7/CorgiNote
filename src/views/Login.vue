@@ -5,7 +5,7 @@
       <div class="row form-container">
         <div class="col s12">
           <h4>LOGIN</h4>
-          <form @submit.prevent="login" class="login">
+          <form @submit.prevent class="login">
             <div class="field">
               <label for="email">Email Address</label>
               <input type="email" name="loginEmail" v-model="loginEmail">
@@ -17,7 +17,7 @@
             </div>
             <div class="feedback" v-if="loginFeedback">{{ loginFeedback }}</div>
             <div class="field" style="display: inline-block">
-              <button class="btn">Account login</button>
+              <button class="btn" @click="login">Account login</button>
             </div>
           </form>
         </div>
@@ -41,10 +41,11 @@ export default {
   methods: {
     login() {
       if (this.loginEmail && this.loginPassword) {
+        let self = this;
         auth
           .signInWithEmailAndPassword(this.loginEmail, this.loginPassword)
           .then(function() {
-            this.$router.replace("course");
+            self.$router.replace("course");
             // console.log(cred.user);
           })
           .catch(err => {
