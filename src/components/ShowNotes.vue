@@ -3,32 +3,37 @@
         <div class = "centerText">
           <h3>Note-List</h3>
         </div>
-        <ul class="collection">
+        <ul class="collection" >
             <li class="collection-item"
                 v-for="(note, index) in notes"
                 :key="note.index"
-                :class="{ 'active': index === activeNote}"
-                @click="changeNote(index)"
                 >
                 <div>{{ note.title }}</div>
             </li>
         </ul>
-        <button @click="addNote()" class="btn btn-info">+ Note</button>
+
+        <div style = "margin: auto; width: fit-content">
+        <router-link :to="{ name: 'UploadPage', params: {course: courseName} }" class="btn-note">
+          <button  class="btn btn-info" >+ Note</button>
+        </router-link>
+        </div>
+
     </div>
 </template>
 
 <script>
 export default {
-  name: "NoteList",
-  props: ["notes", "activeNote"],
-  methods: {
-    changeNote(index) {
-      this.$emit("app-changeNote", index);
+  name: "ShowNotes",
+  props: {
+    notes: {
+      type: Array,
+      default: null
     },
-    addNote() {
-      this.$emit("app-addNote");
+    courseName: {
+      type: String,
+      default: null
     }
-  }
+  },
 };
 </script>
 

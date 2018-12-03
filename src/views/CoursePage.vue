@@ -6,9 +6,13 @@
         <span>
           {{ course.year }}-Semester {{ course.semester }}-{{ course.label }}{{course.num}}-{{ course.name }}
         </span>
-        <router-link :to="{ name: 'UploadPage', params: { course: course.id } }" class="btn-note">
+        <!-- <router-link :to="{ name: 'UploadPage', params: { course: course.id } }" class="btn-note">
           <i class="material-icons left">edit</i>
           View/Edit/Add note
+        </router-link> -->
+        <router-link :to="{ name: 'NotePage', params: { courseName: course.name } }" class="btn-note">
+          <i class="material-icons left">visibility</i>
+          View Course
         </router-link>
       </li>
     </ul>
@@ -17,6 +21,7 @@
         <i class="material-icons left">add</i>Create course
       </router-link>
     </div>
+
 
   </div>
 </template>

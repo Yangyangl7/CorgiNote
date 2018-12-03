@@ -1,5 +1,5 @@
 <template>
-  <div class="col s12 m4 l3" style = "background-color: grey; height: 93vh; padding 10px">
+  <div class="col s12 m4 l3" >
     <div class = "currentCourse" >
       {{courseName | snippet}}
     </div>
