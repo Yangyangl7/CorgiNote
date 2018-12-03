@@ -10,17 +10,27 @@ import firebase from 'firebase'
 //   messagingSenderId: "228207579873"
 // };
 
+// Firestore (Wenjing)
+var config = {
+    apiKey: "AIzaSyAeK-QF1BdG9kf6l18cFJib0lTJV96AIpk",
+    authDomain: "corgi-note.firebaseapp.com",
+    databaseURL: "https://corgi-note.firebaseio.com",
+    projectId: "corgi-note",
+    storageBucket: "corgi-note.appspot.com",
+    messagingSenderId: "406428669708"
+};
+
 
 //  This is used for testing ( Yuhao Li)
-var config = {
-  apiKey: "AIzaSyCxqcQA5tZ8zuWdN9Q31ioGo8qVreYl6_M",
-      authDomain: "homevue-fc0e5.firebaseapp.com",
-      databaseURL: "https://homevue-fc0e5.firebaseio.com",
-      projectId: "homevue-fc0e5",
-      storageBucket: "homevue-fc0e5.appspot.com",
-      messagingSenderId: "335787380090"
+// var config = {
+//   apiKey: "AIzaSyCxqcQA5tZ8zuWdN9Q31ioGo8qVreYl6_M",
+//       authDomain: "homevue-fc0e5.firebaseapp.com",
+//       databaseURL: "https://homevue-fc0e5.firebaseio.com",
+//       projectId: "homevue-fc0e5",
+//       storageBucket: "homevue-fc0e5.appspot.com",
+//       messagingSenderId: "335787380090"
 
-};
+// };
 firebase.initializeApp(config);
 
 const db = firebase.firestore();
@@ -34,4 +44,9 @@ const provider = new firebase.auth.GoogleAuthProvider();
 const auth = firebase.auth();
 var storage = firebase.storage();
 
-export {db, auth, provider, storage };
+export {
+    db,
+    auth,
+    provider,
+    storage
+};

@@ -43,7 +43,7 @@ export default {
       if (this.loginEmail && this.loginPassword) {
         auth
           .signInWithEmailAndPassword(this.loginEmail, this.loginPassword)
-          .then(function () {
+          .then(function() {
             this.$router.replace("course");
             // console.log(cred.user);
           })
@@ -119,5 +119,12 @@ img {
 .col .field button:hover,
 .col .field button:focus {
   background-color: #e0903e;
+}
+
+@media screen and (max-width: 600px) {
+  .form-container {
+    margin: 0 50px;
+    margin-top: -4.3rem;
+  }
 }
 </style>

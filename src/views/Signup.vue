@@ -183,14 +183,14 @@ h5 {
   padding-left: 30px;
 }
 
-@media screen and (min-width: 600px) and (max-width: 992px) {
+@media screen and (max-width: 992px) {
   .signup-right img {
     position: absolute;
-    top: 20rem;
+    top: 22rem;
     padding: 0;
     left: 50%;
-    margin-left: -20rem;
-    width: 40rem;
+    margin-left: -15rem;
+    width: 30rem;
     height: unset;
     -webkit-animation: cssAnimation 4s forwards;
     animation: cssAnimation 4s forwards;
