@@ -14,26 +14,37 @@ export default {
 
 <style scoped>
 .container p {
-  position: absolute;
+  position: fixed;
   width: 40rem;
-  bottom: 5px;
+  bottom: 2px;
   left: 50%;
-  margin-left: -11rem;
+  margin-left: -20rem;
   color: rgba(0, 0, 0, 0.3);
+  text-align: center;
+  font-size: 12px;
 }
-@media screen and (min-width: 1200px) {
-  .container p {
-    font-size: 14px;
-  }
-}
-@media screen and (min-width: 1992px) {
-  .container p {
-    font-size: 13px;
-  }
-}
+
 @media screen and (min-width: 0) {
   .container p {
-    font-size: 12px;
+    display: none;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .container p {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .container p {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .container p {
+    display: block;
   }
 }
 </style>

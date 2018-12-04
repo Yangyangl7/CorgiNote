@@ -94,7 +94,7 @@ export default {
     googleLogin() {
       this.feedback = null;
       auth
-        .signInWithPopup(provider)
+        .signInWithRedirect(provider)
         .then(result => {
           db.collection("users")
             .doc(result.user.email)
@@ -102,9 +102,9 @@ export default {
               user_id: result.user.uid
             });
         })
-        .then(() => {
-          this.router.replace("course");
-        })
+        // .then(() => {
+        //   this.router.replace("course");
+        // })
         .catch(err => {
           this.feedback = err.message;
         });
@@ -187,15 +187,7 @@ h5 {
   padding-left: 30px;
 }
 
-/* .field p {
-  color: red;
-} */
-
 @media screen and (max-width: 992px) {
-  .col .field button {
-    /* font-size: 11px; */
-  }
-
   .signup-right img {
     position: absolute;
     top: 22rem;
@@ -279,6 +271,18 @@ h5 {
   }
   .row {
     margin-top: 4.6rem;
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .col .field button {
+    font-size: 11px;
+    padding: 0px 2.5vw;
+  }
+}
+@media screen and (max-width: 420px) {
+  .signup-left {
+    padding: 5px 40px;
   }
 }
 </style>
