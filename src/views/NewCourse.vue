@@ -68,7 +68,8 @@ export default {
             courseId: this.courseId,
             semester: this.semester,
             year: new Date().getFullYear(),
-            createdTime: new Date().toLocaleString()
+            createdTime: new Date().toLocaleString(),
+            isPublic: false
           })
           .then(() => {
             this.$router.push({name: 'CoursePage'})

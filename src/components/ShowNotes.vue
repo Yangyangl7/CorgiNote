@@ -13,7 +13,7 @@
         </ul>
 
         <div style = "margin: auto; width: fit-content">
-        <router-link :to="{ name: 'UploadPage', params: {course: courseName} }" class="btn-note">
+        <router-link :to="{ name: 'UploadPage', params: {courseId: this.$route.params.courseId} }" class="btn-note">
           <button  class="btn btn-info" >+ Note</button>
         </router-link>
         </div>

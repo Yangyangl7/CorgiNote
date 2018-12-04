@@ -4,16 +4,25 @@
     <ul class="collection" v-for="course in orderedCourses" :key="course.id">
       <li class="collection-item">
         <span>
-          {{ course.year }}-Semester {{ course.semester }}-{{ course.label }}{{course.num}}-{{ course.name }}
+          <span class="switch">
+            <label>
+              Private
+              <input v-if="course.isPublic" type="checkbox" @change="changeState(course)" checked>
+              <input v-if="!course.isPublic" type="checkbox" @change="changeState(course)">
+              <span class="lever"></span>
+              Public
+            </label>
+          </span>
+          <span class="courseAdj">
+            {{ course.year }}-Semester {{ course.semester }}-{{ course.label }}{{course.num}}-{{ course.name }}
+          </span>
+          <span class="btn-note">
+            <router-link :to="{ name: 'NotePage', params: { courseId: course.id } }">
+              <i class="material-icons left">visibility</i>
+              View Course
+            </router-link>
+          </span>
         </span>
-        <!-- <router-link :to="{ name: 'UploadPage', params: { course: course.id } }" class="btn-note">
-          <i class="material-icons left">edit</i>
-          View/Edit/Add note
-        </router-link> -->
-        <router-link :to="{ name: 'NotePage', params: { courseName: course.name } }" class="btn-note">
-          <i class="material-icons left">visibility</i>
-          View Course
-        </router-link>
       </li>
     </ul>
     <div class="newBtn">
@@ -49,6 +58,7 @@ export default {
   },
   methods: {
     getCourse () {
+      this.myCourses = [];
       let self = this;
       db
         .collection("users")
@@ -59,6 +69,7 @@ export default {
           querySnapshot.forEach(function(doc) {
               self.myCourses.push ({
                 id: doc.id,
+                isPublic: doc.data().isPublic,
                 num: doc.data().courseId,
                 name: doc.data().name,
                 year: doc.data().year,
@@ -68,6 +79,28 @@ export default {
               })
           });
         })
+    },
+    changeState (course) {
+      var state;
+      let self = this;
+      if (course.isPublic) {
+        state = false;
+      }
+      else {
+        state = true;
+      }
+      console.log(course.name + ": " + course.isPublic + " to: " + state)
+    
+      db
+      .collection("users")
+      .doc(self.user)
+      .collection("courses")
+      .doc(course.id)
+      .update({
+        isPublic: state
+      })
+      .then(self.getCourse)
+      
     }
   }
 };
@@ -92,5 +125,10 @@ export default {
 
   .btn-note {
     float: right;
+  }
+
+  .courseAdj {
+    margin: 0 30px;
+    width: 33%
   }
 </style>

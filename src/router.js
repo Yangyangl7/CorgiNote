@@ -37,7 +37,7 @@ const router = new Router({
       }
     },
     {
-      path: '/course/:courseName',
+      path: '/course/:courseId',
       name: 'NotePage',
       component: NotePage,
       meta: {
@@ -62,7 +62,7 @@ const router = new Router({
       }
     },
     {
-      path: "/note/:course",
+      path: "/note/:courseId",
       name: 'UploadPage',
       component: UploadPage,
       meta: {
