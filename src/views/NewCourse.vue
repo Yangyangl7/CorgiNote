@@ -65,28 +65,31 @@ export default {
     saveCourse() {
       var month = new Date().getMonth();
 
-      if (month <= "12" && month >= "6") {
-        this.semester = "2";
-      } else {
-        this.semester = "1";
+      if (month <= '12' && month >= '6') {
+        this.semester = '2';
+      }
+      else {
+        this.semester = '1';
       }
 
-      db.collection("users")
+      db
+        .collection("users")
         .doc(this.user)
         .collection("courses")
         .add({
-          univName: this.univName,
+          univName : this.univName,
           name: this.name,
           label: this.label,
           courseId: this.courseId,
           semester: this.semester,
           year: new Date().getFullYear(),
-          createdTime: new Date().toLocaleString()
+          createdTime: new Date().toLocaleString(),
+          isPublic: false
         })
         .then(() => {
-          this.$router.push({ name: "CoursePage" });
+          this.$router.push({name: 'CoursePage'})
         })
-        .catch(err => console.log(err));
+        .catch(error => console.log(err))
     }
   }
 };

@@ -2,9 +2,9 @@
   <div>
   <div class = "row">
     <slide-bar
-      v-bind:courseName = "courseName"/>
+      v-bind:courseName = "courseId"/>
 
-    <show-notes v-bind:courseName = "courseName" />
+    <show-notes v-bind:courseName = "courseId" />
 
   </div>
 </div>
@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       user: auth.currentUser.email,
-      courseName: this.$route.params.courseName,
+      courseId: this.$route.params.courseId,
       noteList: []
     }
   },

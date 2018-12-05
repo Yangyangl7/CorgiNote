@@ -5,8 +5,9 @@ import Login from '@/views/Login'
 import CoursePage from '@/views/CoursePage'
 import ErrorPage from '@/views/ErrorPage'
 import NewCoursePage from '@/views/NewCourse'
-import NotePage from '@/views/NotePage'
+// import NotePage from '@/views/NotePage'
 import UploadPage from '@/views/UploadPage'
+import Note from '@/components/Note'
 
 import {
   auth
@@ -37,9 +38,10 @@ const router = new Router({
       }
     },
     {
-      path: '/course/:courseName',
-      name: 'NotePage',
-      component: NotePage,
+      path: '/course/:courseId',
+      name: 'UploadPage',
+      component: UploadPage,
+      props:true,
       meta: {
         requireAuth: true
       }
@@ -62,9 +64,10 @@ const router = new Router({
       }
     },
     {
-      path: "/note/:course",
-      name: 'UploadPage',
-      component: UploadPage,
+      path: "/note/:noteId",
+      name: 'Note',
+      component: Note,
+      props:true,
       meta: {
         requireAuth: true
       }

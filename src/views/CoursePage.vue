@@ -13,13 +13,22 @@
       <div v-if="myCourses.length != 0">
         <h5 style="margin-top:3.2rem;margin-bottom:2rem">Courses You Have Created</h5>
         <div class="row">
-          <div class="col s6 m3 l2" v-for="course in orderedCourses" :key="course.id">
+          <div class="col s6 m4 l3" v-for="course in orderedCourses" :key="course.id">
             <ul class="card" style="margin-right:auto;margin-left:auto">
               <li class="card-content" style="position:relative">
+                <div class="switch">
+                  <label>
+                    Private
+                    <input v-if="course.isPublic" type="checkbox" @change="changeState(course)" checked>
+                    <input v-if="!course.isPublic" type="checkbox" @change="changeState(course)">
+                    <span class="lever"></span>
+                    Public
+                  </label>
+                </div>
                 <span class="dot"></span>
                 <span class="remove" @click="removeCourse(course.id)">&times;</span>
-                <router-link :to="{ name: 'NotePage', params: { courseName: course.name } }">
-                  <div style="text-align: left;">
+                <router-link :to="{ name: 'UploadPage', params: { courseId: course.id, courseName:course.name } }" class="btn-note">
+                  <div>
                     <span>
                       <span class="semester">{{ course.year }}&nbsp; Semester {{ course.semester }}</span>
                       <br>
@@ -30,12 +39,6 @@
                       </span>
                     </span>
                   </div>
-                  <!-- <router-link
-                  :to="{ name: 'NotePage', params: { courseName: course.name } }"
-                  class="btn-note"
-                >
-                  <i class="material-icons left">visibility</i>
-                  View Course-->
                 </router-link>
               </li>
             </ul>
@@ -86,7 +89,8 @@ export default {
     }
   },
   methods: {
-    getCourse() {
+    getCourse () {
+      this.myCourses = [];
       let self = this;
       db.collection("users")
         .doc(self.user)
@@ -94,17 +98,39 @@ export default {
         .get()
         .then(function(querySnapshot) {
           querySnapshot.forEach(function(doc) {
-            self.myCourses.push({
-              id: doc.id,
-              num: doc.data().courseId,
-              name: doc.data().name,
-              year: doc.data().year,
-              label: doc.data().label,
-              semester: doc.data().semester,
-              date: doc.data().createdTime
-            });
+              self.myCourses.push ({
+                id: doc.id,
+                isPublic: doc.data().isPublic,
+                num: doc.data().courseId,
+                name: doc.data().name,
+                year: doc.data().year,
+                label: doc.data().label,
+                semester: doc.data().semester,
+                date: doc.data().createdTime
+              })
           });
-        });
+        })
+    },
+    changeState (course) {
+      var state;
+      let self = this;
+      if (course.isPublic) {
+        state = false;
+      }
+      else {
+        state = true;
+      }
+      console.log(course.name + ": " + course.isPublic + " to: " + state)
+    
+      db
+      .collection("users")
+      .doc(self.user)
+      .collection("courses")
+      .doc(course.id)
+      .update({
+        isPublic: state
+      })
+      .then(self.getCourse)
     },
     removeCourse(id) {
       let self = this;
@@ -160,7 +186,7 @@ a {
 }
 
 .btn-note {
-  float: right;
+  float: center;
 }
 
 .corgi-courses {
@@ -183,8 +209,8 @@ h6 {
   margin: 1.8rem 0 2.8rem 0;
 }
 .card {
-  height: 10rem;
-  width: 10rem;
+  height: 12.5rem;
+  width: 12.5rem;
   box-shadow: unset;
   /* box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2); */
   border-radius: 6px;
