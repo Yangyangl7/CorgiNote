@@ -97,7 +97,7 @@ export default {
   font-weight: bold;
 }
 .navbar ul li a {
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 0.8);
   font-weight: 500;
   transition: all linear 0.2s;
 }
@@ -143,12 +143,12 @@ export default {
 
 .navbar ul li .user-email {
   cursor: unset;
-  color: rgba(0, 0, 0, 0.8);
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .navbar ul li .user-email:hover,
 .navbar ul li .user-email:focus {
-  color: rgba(0, 0, 0, 0.8);
+  color: rgba(0, 0, 0, 0.6);
 }
 
 #sidenav {

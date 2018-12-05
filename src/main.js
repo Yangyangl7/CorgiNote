@@ -14,6 +14,13 @@ Vue.filter('snippet', val => {
   return val
 })
 
+Vue.filter('shortSnippet', val => {
+  //if (!val || typeof (val) != 'string') return ''
+  if (val.length >= 14)
+    val = val.slice(0, 14) + '...'
+  return val
+})
+
 let app = null;
 
 firebase.auth().onAuthStateChanged(() => {
