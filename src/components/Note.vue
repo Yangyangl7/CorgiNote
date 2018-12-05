@@ -6,7 +6,12 @@
                 <input class="form-control" type="text" v-model="note.title" placeholder="Title" />
             </div>
             <div class="form-group">
-                <textarea class="form-control" v-model="note.content" placeholder="Content"></textarea>
+                <!-- <textarea class="form-control" v-model="note.content" placeholder="Content"></textarea> -->
+                <quill-editor v-model="note.content"
+                ref="myQuillEditor"
+                :options="editorOption"
+                >
+            </quill-editor>
             </div>
             <div class="form-group">
                 <textarea class="form-control" v-model="note.date" placeholder="Date"></textarea>
@@ -30,15 +35,28 @@
 import PhotoEasy from './PhotoEasy.vue';
 import "firebase/firestore";
 import { db,auth } from '@/firebase/init';
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+import { quillEditor } from 'vue-quill-editor'
 
 const noteCollection = db.collection("notes");
 
 export default {
   name: "Note",
   components: {
-    PhotoEasy
+    PhotoEasy,
+    quillEditor
   },
   props: ["note","noteId","courseId"],
+  data () {
+      return {
+        content: '<h2>I am Example</h2>',
+        editorOption: {
+          // some quill options
+        }
+      }
+    },
   methods: {
     saveNote() {
       // this.note.imgUrls=[];
@@ -67,6 +85,14 @@ export default {
       const id = this.note.id;
       noteCollection.doc(id).delete();
     }
+  },
+  computed: {
+      editor() {
+        return this.$refs.myQuillEditor.quill
+      }
+    },
+  mounted() {
+    console.log('this is current quill instance object', this.editor)
   }
 };
 </script>

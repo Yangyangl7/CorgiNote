@@ -6,7 +6,7 @@
     </li>
     <input type="file" accept="image/*" capture @change="onChange($event.target.files)">
     <p><img :src="imgUrl" id="imageTag" width="240" height="180"></p>
-    <button class="btn btn-danger" @click="uploadImg(note)">Upload Image</button>
+    <button class="btn btn-danger" @click="uploadImg(note)">Upload Image > 1 Mb</button>
     <br>
     <br>
   </div>
