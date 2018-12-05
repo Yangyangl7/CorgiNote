@@ -1,7 +1,7 @@
 <template>
     <div class="col s12 m8 l9">
         <div class = "centerText">
-          <h3>Note-List</h3>
+          <!-- <h3>Note-List</h3> -->
         </div>
         <ul class="collection">
             <li class="collection-item"
@@ -10,17 +10,20 @@
                 :class="{ 'active': index === activeNote}"
                 @click="changeNote(index)"
                 >
-                <div>{{ note.title }}</div>
+                                <router-link :to="{name: 'Note', params: {note: note,noteId:index,courseId:note.courseId}}">{{ note.title }}</router-link>
+
             </li>
         </ul>
-        <button @click="addNote()" class="btn btn-info">+ Note</button>
+        <router-link :to="{name: 'Note', params: {note: {imgUrls:[]},noteId:notes.length,courseId:this.$route.params.courseId}}" tag="button" class="btn btn-info">+ Note</router-link>
+
+        <!-- <button @click="addNote()" class="btn btn-info">+ Note</button> -->
     </div>
 </template>
 
 <script>
 export default {
   name: "NoteList",
-  props: ["notes", "activeNote"],
+  props: ["notes", "activeNote","courseId"],
   methods: {
     changeNote(index) {
       this.$emit("app-changeNote", index);

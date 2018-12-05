@@ -1,7 +1,7 @@
 <template>
     <div id="upload">
         <div style="color: blue;">
-            <h1>Personal Note App</h1>
+            
         </div>
         <div class="row">
             <div class="col-sm-6">
@@ -9,15 +9,15 @@
                   @app-addNote="addNote"
                   @app-changeNote="changeNote"
                   :notes="notes"
+                  :courseId="this.$route.params.courseId"
                   :activeNote="index" />
             </div>
-            <div class="col-sm-6">
-                <Note
+            <!-- <div class="col-sm-6"> -->
+                <!-- <Note
                   @app-saveNote="saveNote"
                   @app-removeNote="removeNote"
-                  :note="notes[index]" />
-                  <!-- <photo /> -->
-            </div>
+                  :note="notes[index]" /> -->
+            <!-- </div> -->
         </div>
     </div>
 </template>
@@ -34,7 +34,7 @@ import {db} from '../firebase/init'
 
 
 //enable offline mode
-db.enablePersistence();
+//db.enablePersistence();
 
 const noteCollection = db.collection("notes");
 
@@ -43,6 +43,7 @@ var unsubscribe;
 
 export default {
   name: "UploadPage",
+  props: ["courseName"],
   components: {
     NotesList,
     Note,
@@ -58,8 +59,10 @@ export default {
         title: "",
         content: "",
         date:"",
-        imgUrls:[]
+        imgUrls:[],
+        courseId:this.$route.params.courseId
       });
+      // console.log(this.courseId);
       this.index = this.notes.length - 1;
     },
     changeNote(index) {
@@ -78,7 +81,8 @@ export default {
         title: note.title,
         content: note.content,
         date: note.date,
-        imgUrls:note.imgUrls
+        imgUrls:note.imgUrls,
+        courseId:note.courseId
       });
     },
     createNote(note) {
@@ -90,14 +94,15 @@ export default {
     }
   },
   created() {
-    noteCollection.get().then(snapshot => {
+    noteCollection.where("courseId","==",this.$route.params.courseId).get().then(snapshot => {
       snapshot.forEach(doc => {
         this.notes.push({
           id: doc.id,
           title: doc.data().title,
           content: doc.data().content,
           date: doc.data().date,
-          imgUrls:doc.data().imgUrls
+          imgUrls:doc.data().imgUrls,
+          courseId:doc.data().courseId
         });
       });
     });
@@ -106,7 +111,7 @@ export default {
 
     
 
-    unsubscribe = noteCollection.onSnapshot(snapshot => {
+    unsubscribe = noteCollection.where("courseId","==",this.$route.params.courseId).onSnapshot(snapshot => {
       snapshot.docChanges().forEach(change => {
         if (change.type === "added") {
           const note = { ...change.doc.data(), id: change.doc.id };
@@ -122,6 +127,7 @@ export default {
           updatedNote.content = change.doc.data().content;
           updatedNote.date = change.doc.data().date;
           updatedNote.imgUrls = change.doc.data().imgUrls;
+          updatedNote.courseId = change.doc.data().courseId;
 
 
 

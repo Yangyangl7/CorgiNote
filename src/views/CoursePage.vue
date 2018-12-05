@@ -10,7 +10,7 @@
           <i class="material-icons left">edit</i>
           View/Edit/Add note
         </router-link> -->
-        <router-link :to="{ name: 'NotePage', params: { courseName: course.name } }" class="btn-note">
+        <router-link :to="{ name: 'UploadPage', params: { courseId: course.id,courseName:course.name } }" class="btn-note">
           <i class="material-icons left">visibility</i>
           View Course
         </router-link>
