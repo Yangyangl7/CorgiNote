@@ -55,7 +55,7 @@ const settings = {
     timestampsInSnapshots: true
 };
 db.settings(settings);
-db.enablePersistence();
+db.enablePersistence({experimentalTabSynchronization:true});
 
 const provider = new firebase.auth.GoogleAuthProvider();
 const auth = firebase.auth();
