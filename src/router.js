@@ -8,6 +8,7 @@ import NewCoursePage from '@/views/NewCourse'
 // import NotePage from '@/views/NotePage'
 import UploadPage from '@/views/UploadPage'
 import Note from '@/components/Note'
+import Search from '@/views/SearchUser'
 
 import {
   auth
@@ -68,6 +69,14 @@ const router = new Router({
       name: 'Note',
       component: Note,
       props:true,
+      meta: {
+        requireAuth: true
+      }
+    },
+    {
+      path: "/search",
+      name: 'Search',
+      component: Search,
       meta: {
         requireAuth: true
       }

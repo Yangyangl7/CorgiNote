@@ -1,6 +1,20 @@
 <template>
   <div class="coursePage">
     <div class="container">
+      <div>
+        <div class="row">
+          <form class="col s12" @submit.prevent="searchUsers">
+            <div class="row">
+              <div class="input-field col s6">
+                <input type="text" v-model="searchUser" placeholder="Search Users By Their Email">
+              </div>
+              <div class="search-btn input-field col s6">
+                <button type="submit" class="btn"><i class="material-icons left">search</i>Search</button>
+              </div>
+             </div>
+          </form>
+        </div>
+      </div>
       <div v-if="myCourses.length == 0">
         <img class="corgi-courses" src="@/assets/newCourse1.png" alt="new course icon" width="180">
         <div class="row">
@@ -43,7 +57,7 @@
               </li>
             </ul>
           </div>
-        </div>
+      </div>
       </div>
       <div class="newBtn">
         <router-link to="/new" class="btn waves-effect waves-light btn-course">
@@ -62,9 +76,9 @@ export default {
   name: "CoursePage",
   data: function() {
     return {
-      msg: "Test",
       user: auth.currentUser.email,
-      myCourses: []
+      myCourses: [],
+      searchUser: ''
     };
   },
   created() {
@@ -109,6 +123,21 @@ export default {
                 date: doc.data().createdTime
               })
           });
+        })
+    },
+    searchUsers () {
+      var email = this.searchUser;
+      let self = this;
+      db.collection("users")
+        .doc(email)
+        .get()
+        .then(function(doc) {
+          if (doc.id != self.user && doc.exists) {
+            self.$router.push({ name: 'Search', params: {userId: email} }) 
+          }
+          else {
+            console.log("No such user");
+          }
         })
     },
     changeState (course) {
@@ -181,7 +210,7 @@ a {
   text-transform: unset;
   padding: 5px 16px;
   height: 46px;
-  bottom: 10.5rem;
+  bottom: 9.5rem;
   transition: all linear 200ms;
 }
 
@@ -203,7 +232,7 @@ a {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 5.5rem;
+  margin-top: 1.2rem;
 }
 h5 {
   font-weight: 700;
