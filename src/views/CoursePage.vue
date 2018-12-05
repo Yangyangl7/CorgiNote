@@ -120,8 +120,19 @@ export default {
       else {
         state = true;
       }
+
       console.log(course.name + ": " + course.isPublic + " to: " + state)
-    
+      course.isPublic = state;
+      
+      //Mind changed, don't need to be realtime to implement
+      // db.collection("users")
+      //   .doc(self.user)
+      //   .collection("courses")
+      //   .doc(course.id)
+      //   .onSnapshot(function(doc) {
+      //     course.isPublic = doc.data().isPublic
+      //   })
+
       db
       .collection("users")
       .doc(self.user)
@@ -130,7 +141,6 @@ export default {
       .update({
         isPublic: state
       })
-      .then(self.getCourse)
     },
     removeCourse(id) {
       let self = this;
