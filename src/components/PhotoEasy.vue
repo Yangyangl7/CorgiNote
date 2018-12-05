@@ -19,7 +19,7 @@ import "firebase/firestore";
 import "firebase/storage"
 import {storage} from '../firebase/init'
 
-
+var uniqid = require('uniqid');
 var storageRef = storage.ref();
 
   export default {
@@ -52,7 +52,7 @@ var storageRef = storage.ref();
           contentType: 'image/jpeg'
         };
 
-        var uploadTask = storageRef.child('images/' + this.file.name).put(this.file, metadata);
+        var uploadTask = storageRef.child('images/' +uniqid()+this.file.name).put(this.file, metadata);
         uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
           function(snapshot) {
             // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded

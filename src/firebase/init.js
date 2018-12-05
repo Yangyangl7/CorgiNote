@@ -6,14 +6,14 @@ import "firebase/storage"
 
 //Firestore (luo yangyang)
 //Initialize Firebase
-var config = {
-  apiKey: "AIzaSyBmai8i36KohsH1D3yT-XqrktrJsPA1hJw",
-  authDomain: "csci5117-mooncake-project2.firebaseapp.com",
-  databaseURL: "https://csci5117-mooncake-project2.firebaseio.com",
-  projectId: "csci5117-mooncake-project2",
-  storageBucket: "csci5117-mooncake-project2.appspot.com",
-  messagingSenderId: "228207579873"
-};
+// var config = {
+//   apiKey: "AIzaSyBmai8i36KohsH1D3yT-XqrktrJsPA1hJw",
+//   authDomain: "csci5117-mooncake-project2.firebaseapp.com",
+//   databaseURL: "https://csci5117-mooncake-project2.firebaseio.com",
+//   projectId: "csci5117-mooncake-project2",
+//   storageBucket: "csci5117-mooncake-project2.appspot.com",
+//   messagingSenderId: "228207579873"
+// };
 
 
 // Firestore (Wenjing)
@@ -48,14 +48,14 @@ var config = {
 // };
 
 // Batu's config
-// var config = {
-//     apiKey: "AIzaSyAGt1H4ED9v2Y_O0kUjINsCuQdgO3Y9Zh0",
-//     authDomain: "mooncake-firestore-demo.firebaseapp.com",
-//     databaseURL: "https://mooncake-firestore-demo.firebaseio.com",
-//     projectId: "mooncake-firestore-demo",
-//     storageBucket: "mooncake-firestore-demo.appspot.com",
-//     messagingSenderId: "334864270761"
-//   };
+var config = {
+    apiKey: "AIzaSyAGt1H4ED9v2Y_O0kUjINsCuQdgO3Y9Zh0",
+    authDomain: "mooncake-firestore-demo.firebaseapp.com",
+    databaseURL: "https://mooncake-firestore-demo.firebaseio.com",
+    projectId: "mooncake-firestore-demo",
+    storageBucket: "mooncake-firestore-demo.appspot.com",
+    messagingSenderId: "334864270761"
+  };
 
 firebase.initializeApp(config);
 
