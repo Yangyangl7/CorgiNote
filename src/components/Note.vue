@@ -20,25 +20,52 @@
         <div v-else>
             <h5>Please create new Note...</h5>
         </div>
+         <br>
+       <router-link :to="{name: 'UploadPage', params: {courseId:courseId}}" tag="button">Return to Note List</router-link>
          
     </div> 
 </template>
 
 <script>
 import PhotoEasy from './PhotoEasy.vue';
+import "firebase/firestore";
+import { db,auth } from '@/firebase/init';
+
+const noteCollection = db.collection("notes");
 
 export default {
   name: "Note",
   components: {
     PhotoEasy
   },
-  props: ["note"],
+  props: ["note","noteId","courseId"],
   methods: {
     saveNote() {
-      this.$emit("app-saveNote");
+      // this.note.imgUrls=[];
+      this.note.courseId=this.courseId;
+      this.note.userId=auth.currentUser.uid;
+      const note=this.note;
+      if (note.id) {
+        this.updateNote(note);
+      } else {
+        this.createNote(note);
+      }
+    },
+    updateNote(note) {
+      noteCollection.doc(note.id).update({
+        title: note.title,
+        content: note.content,
+        date: note.date,
+        imgUrls:note.imgUrls,
+        courseId:note.courseId
+      });
+    },
+    createNote(note) {
+      noteCollection.add(note);
     },
     removeNote() {
-      this.$emit("app-removeNote");
+      const id = this.note.id;
+      noteCollection.doc(id).delete();
     }
   }
 };
