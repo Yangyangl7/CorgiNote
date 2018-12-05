@@ -29,7 +29,7 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/storage"
 import PhotoEasy from '../components/PhotoEasy.vue';
-import {db} from '../firebase/init'
+import {db,auth} from '../firebase/init'
 
 
 
@@ -94,7 +94,7 @@ export default {
     }
   },
   created() {
-    noteCollection.where("courseId","==",this.$route.params.courseId).get().then(snapshot => {
+    noteCollection.where("courseId","==",this.$route.params.courseId).where("userId","==",auth.currentUser.uid).get().then(snapshot => {
       snapshot.forEach(doc => {
         this.notes.push({
           id: doc.id,
@@ -111,7 +111,7 @@ export default {
 
     
 
-    unsubscribe = noteCollection.where("courseId","==",this.$route.params.courseId).onSnapshot(snapshot => {
+    unsubscribe = noteCollection.where("courseId","==",this.$route.params.courseId).where("userId","==",auth.currentUser.uid).onSnapshot(snapshot => {
       snapshot.docChanges().forEach(change => {
         if (change.type === "added") {
           const note = { ...change.doc.data(), id: change.doc.id };

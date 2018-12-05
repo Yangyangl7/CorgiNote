@@ -29,7 +29,7 @@
 <script>
 import PhotoEasy from './PhotoEasy.vue';
 import "firebase/firestore";
-import { db } from '@/firebase/init';
+import { db,auth } from '@/firebase/init';
 
 const noteCollection = db.collection("notes");
 
@@ -43,6 +43,7 @@ export default {
     saveNote() {
       // this.note.imgUrls=[];
       this.note.courseId=this.courseId;
+      this.note.userId=auth.currentUser.uid;
       const note=this.note;
       if (note.id) {
         this.updateNote(note);
