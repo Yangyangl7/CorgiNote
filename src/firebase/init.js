@@ -38,14 +38,14 @@ var config = {
 };
 
 // Batu's config
-// var config = {
-//     apiKey: "AIzaSyAGt1H4ED9v2Y_O0kUjINsCuQdgO3Y9Zh0",
-//     authDomain: "mooncake-firestore-demo.firebaseapp.com",
-//     databaseURL: "https://mooncake-firestore-demo.firebaseio.com",
-//     projectId: "mooncake-firestore-demo",
-//     storageBucket: "mooncake-firestore-demo.appspot.com",
-//     messagingSenderId: "334864270761"
-// };
+var config = {
+    apiKey: "AIzaSyAGt1H4ED9v2Y_O0kUjINsCuQdgO3Y9Zh0",
+    authDomain: "mooncake-firestore-demo.firebaseapp.com",
+    databaseURL: "https://mooncake-firestore-demo.firebaseio.com",
+    projectId: "mooncake-firestore-demo",
+    storageBucket: "mooncake-firestore-demo.appspot.com",
+    messagingSenderId: "334864270761"
+};
 
 firebase.initializeApp(config);
 

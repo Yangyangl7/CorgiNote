@@ -8,9 +8,10 @@
         <!-- <textarea class="form-control" v-model="note.content" placeholder="Content"></textarea> -->
         <quill-editor v-model="note.content" class = "textfield" ref="myQuillEditor" :options="editorOption"></quill-editor>
       </div>
-      <div class="form-group">
+      <!-- <div class="form-group">
         <textarea class="form-control" v-model="note.date" placeholder="Date"></textarea>
-      </div>
+      </div> -->
+      <!-- <p> {{note.date.toDate()}}</p> -->
       <photo-easy :note="note"/>
 
       <button class="btn btn-danger" @click="removeNote()">Remove</button>
@@ -31,6 +32,8 @@
 <script>
 import PhotoEasy from "./PhotoEasy.vue";
 import "firebase/firestore";
+import firebase from "firebase/app";
+
 import { db, auth } from "@/firebase/init";
 import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
@@ -59,6 +62,7 @@ export default {
       // this.note.imgUrls=[];
       this.note.courseId = this.courseId;
       this.note.userId = auth.currentUser.uid;
+      this.note.date=firebase.firestore.FieldValue.serverTimestamp();
       const note = this.note;
       if (note.id) {
         this.updateNote(note);
