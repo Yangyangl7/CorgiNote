@@ -1,22 +1,24 @@
 <template>
-  <div class="note">
+  <div class="note" >
     <div v-if="note">
       <div class="form-group noteTitle">
         <input class="form-control inputTitle" type="text" v-model="note.title" placeholder="Title">
       </div>
-      <div class="form-group">
+      <div class="form-group textfield">
         <!-- <textarea class="form-control" v-model="note.content" placeholder="Content"></textarea> -->
-        <quill-editor v-model="note.content" class = "textfield" ref="myQuillEditor" :options="editorOption"></quill-editor>
+        <quill-editor v-model="note.content" style = "height:100%" ref="myQuillEditor" :options="editorOption"></quill-editor>
       </div>
       <!-- <div class="form-group">
         <textarea class="form-control" v-model="note.date" placeholder="Date"></textarea>
       </div> -->
       <!-- <p> {{note.date.toDate()}}</p> -->
-      <photo-easy :note="note"/>
+
 
       <button class="btn btn-danger" @click="removeNote()">Remove</button>
-
       <button class="btn btn-success" @click="saveNote()">Save</button>
+      <photo-easy :note="note"/>
+
+
     </div>
     <div v-else>
       <h5>Please create new Note...</h5>
@@ -99,12 +101,27 @@ export default {
 </script>
 
 <style scoped>
+
 .note {
-  margin: 20px;
+  /* margin: 20px; */
+  padding:20px;
+  width: 80%;
+  margin:  auto;
 }
 
+@media screen and (max-width: 420px) {
+  .note {
+    /* margin: 20px; */
+    padding:10px;
+    width: 100%;
+    margin:  auto;
+  }
+}
 .textfield {
-  height: 70vh
+  height: 80vh;
+  margin-bottom: 20px;
+  overflow: hidden;
+  margin-bottom: 1px solid #ddd;
 }
 
 .noteTitle {
@@ -113,7 +130,7 @@ export default {
 
 .inputTitle {
   font-weight: bold;
-  font-size: 24px;
+  font-size: 32px;
   font-family: fantasy;
   letter-spacing: 2px;
   text-align: center;
