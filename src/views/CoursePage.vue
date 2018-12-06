@@ -3,15 +3,18 @@
     <div class="container">
       <div>
         <div class="row">
-          <form class="col s12" @submit.prevent="searchUsers">
-            <div class="row">
-              <div class="input-field col s6">
-                <input type="text" v-model="searchUser" placeholder="Search Users By Their Email">
+          <form class="col s12" @submit.prevent>
+            <div class="row" style="margin-bottom: -1.5rem">
+              <div class="input-field col s12 search-container">
+                <input
+                  type="email"
+                  v-model="searchUser"
+                  placeholder="Search users by their email"
+                  @keyup.enter="searchUsers"
+                >
+                <i class="small material-icons submit-button prefix" @click="searchUsers">search</i>
               </div>
-              <div class="search-btn input-field col s6">
-                <button type="submit" class="btn"><i class="material-icons left">search</i>Search</button>
-              </div>
-             </div>
+            </div>
           </form>
         </div>
       </div>
@@ -27,13 +30,18 @@
       <div v-if="myCourses.length != 0">
         <h5 style="margin-top:3.2rem;margin-bottom:2rem">Courses You Have Created</h5>
         <div class="row">
-          <div class="col s6 m4 l3" v-for="course in orderedCourses" :key="course.id">
+          <div class="col s6 m4 l3" v-for="course in myCourses" :key="course.id">
             <ul class="card" style="margin-right:auto;margin-left:auto">
               <li class="card-content" style="position:relative">
                 <div class="switch">
                   <label>
                     Private
-                    <input v-if="course.isPublic" type="checkbox" @change="changeState(course)" checked>
+                    <input
+                      v-if="course.isPublic"
+                      type="checkbox"
+                      @change="changeState(course)"
+                      checked
+                    >
                     <input v-if="!course.isPublic" type="checkbox" @change="changeState(course)">
                     <span class="lever"></span>
                     Public
@@ -41,13 +49,16 @@
                 </div>
                 <span class="dot"></span>
                 <span class="remove" @click="removeCourse(course.id)">&times;</span>
-                <router-link :to="{ name: 'UploadPage', params: { courseId: course.id, courseName:course.name } }" class="btn-note">
+                <router-link
+                  :to="{ name: 'UploadPage', params: { courseId: course.id, courseName:course.name } }"
+                  class="btn-note"
+                >
                   <div>
                     <span>
                       <span class="semester">{{ course.year }}&nbsp; Semester {{ course.semester }}</span>
                       <br>
                       <span class="course-info">
-                        {{ course.label | shortSnippet }}{{course.num | shortSnippet}}
+                        {{ course.label | shortSnippet }} {{course.num | shortSnippet}}
                         <br>
                         {{ course.name | shortSnippet}}
                       </span>
@@ -57,7 +68,7 @@
               </li>
             </ul>
           </div>
-      </div>
+        </div>
       </div>
       <div class="newBtn">
         <router-link to="/new" class="btn waves-effect waves-light btn-course">
@@ -74,58 +85,79 @@ import { db, auth } from "@/firebase/init";
 
 export default {
   name: "CoursePage",
-  data: function() {
+  data() {
     return {
       user: auth.currentUser.email,
       myCourses: [],
-      searchUser: ''
+      searchUser: ""
     };
   },
   created() {
-    this.getCourse();
+    // this.getCourse();
+    this.myCourses = [];
     let self = this;
+
     db.collection("users")
       .doc(self.user)
       .collection("courses")
+      .orderBy("createdTime")
       .onSnapshot(snapshot => {
         snapshot.docChanges().forEach(change => {
+          if (change.type === "added") {
+            let doc = change.doc;
+            self.myCourses.unshift({
+              id: doc.id,
+              isPublic: doc.data().isPublic,
+              num: doc.data().courseId,
+              name: doc.data().name,
+              year: doc.data().year,
+              label: doc.data().label,
+              semester: doc.data().semester,
+              date: doc.data().createdTime
+            });
+          }
           if (change.type === "removed") {
             self.myCourses = self.myCourses.filter(course => {
               return course.id != change.doc.id;
             });
           }
+          if (change.type === "modified") {
+            let doc = change.doc;
+            let arr = self.myCourses.find(x => x.id === doc.id);
+            arr.isPublic = doc.data().isPublic;
+          }
         });
       });
   },
   computed: {
-    orderedCourses: function() {
-      return _.orderBy(this.myCourses, "date", "desc");
-    }
+    // orderedCourses: function() {
+    //   return _.orderBy(this.myCourses, "date", "desc");
+    // }
   },
   methods: {
-    getCourse () {
-      this.myCourses = [];
-      let self = this;
-      db.collection("users")
-        .doc(self.user)
-        .collection("courses")
-        .get()
-        .then(function(querySnapshot) {
-          querySnapshot.forEach(function(doc) {
-              self.myCourses.push ({
-                id: doc.id,
-                isPublic: doc.data().isPublic,
-                num: doc.data().courseId,
-                name: doc.data().name,
-                year: doc.data().year,
-                label: doc.data().label,
-                semester: doc.data().semester,
-                date: doc.data().createdTime
-              })
-          });
-        })
-    },
-    searchUsers () {
+    // getCourse() {
+    //   this.myCourses = [];
+    //   let self = this;
+    //   db.collection("users")
+    //     .doc(self.user)
+    //     .collection("courses")
+    //     .get()
+    //     .then(function(querySnapshot) {
+    //       querySnapshot.forEach(function(doc) {
+    //         self.myCourses.push({
+    //           id: doc.id,
+    //           isPublic: doc.data().isPublic,
+    //           num: doc.data().courseId,
+    //           name: doc.data().name,
+    //           year: doc.data().year,
+    //           label: doc.data().label,
+    //           semester: doc.data().semester,
+    //           date: doc.data().createdTime
+    //         });
+    //       });
+    //     });
+    // },
+    searchUsers() {
       var email = this.searchUser;
       let self = this;
       db.collection("users")
@@ -133,26 +165,28 @@ export default {
         .get()
         .then(function(doc) {
           if (doc.id != self.user && doc.exists) {
-            self.$router.push({ name: 'Search', params: {userId: email} }) 
-          }
-          else {
+            self.$router.push({ name: "Search", params: { userId: email } });
+          } else {
             console.log("No such user");
+            window.M.toast({
+              html: "No Such User Here.",
+              displayLength: "3000"
+            });
           }
-        })
+        });
     },
-    changeState (course) {
+    changeState(course) {
       var state;
       let self = this;
       if (course.isPublic) {
         state = false;
-      }
-      else {
+      } else {
         state = true;
       }
 
-      console.log(course.name + ": " + course.isPublic + " to: " + state)
+      console.log(course.name + ": " + course.isPublic + " to: " + state);
       course.isPublic = state;
-      
+
       //Mind changed, don't need to be realtime to implement
       // db.collection("users")
       //   .doc(self.user)
@@ -162,14 +196,13 @@ export default {
       //     course.isPublic = doc.data().isPublic
       //   })
 
-      db
-      .collection("users")
-      .doc(self.user)
-      .collection("courses")
-      .doc(course.id)
-      .update({
-        isPublic: state
-      })
+      db.collection("users")
+        .doc(self.user)
+        .collection("courses")
+        .doc(course.id)
+        .update({
+          isPublic: state
+        });
     },
     removeCourse(id) {
       let self = this;
@@ -248,8 +281,8 @@ h6 {
   margin: 1.8rem 0 2.8rem 0;
 }
 .card {
-  height: 12.5rem;
-  width: 12.5rem;
+  height: 11.5rem;
+  width: 11.5rem;
   box-shadow: unset;
   /* box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2); */
   border-radius: 6px;
@@ -318,9 +351,97 @@ h6 {
   color: #eb8d21;
 }
 
+input[type="email"]:not(.browser-default) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.input-field input[type="email"]:focus {
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.7);
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.7); */
+  border-bottom: 1px solid rgba(235, 141, 33, 0.8);
+  box-shadow: 0 1px 0 0 rgba(235, 141, 33, 0.8);
+}
+
+.input-field .prefix.active {
+  color: #eb8d21;
+}
+
+i.submit-button {
+  transition: all linear 200ms;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.2);
+  font-size: 1.5rem;
+}
+
+i.submit-button:hover,
+i.submit-button:focus {
+  color: #eb8d21;
+}
+i.prefix {
+  top: 1.4em;
+  right: 9.5rem;
+}
+
+.search-container {
+  padding: 1rem 10rem;
+}
+
+::placeholder {
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+.switch label .lever {
+  width: 26px;
+  height: 12px;
+  margin: 0 8px 0 12px;
+}
+
+.switch label .lever:before,
+.switch label .lever:after {
+  width: 16px;
+  height: 16px;
+}
+
+.switch label input[type="checkbox"]:checked + .lever:before,
+.switch label input[type="checkbox"]:checked + .lever:after {
+  left: 14px;
+}
+
+.switch label input[type="checkbox"]:checked + .lever {
+  background-color: rgba(235, 141, 33, 0.5);
+}
+
+.switch label input[type="checkbox"]:checked + .lever:after {
+  background-color: #eb8d21;
+}
+
+/* #toast-container {
+  display: block;
+  position: fixed;
+  z-index: 10000;
+  /* top: 10%;
+  left: 50%;
+  transform: translateX(-50%); */
+
+/* @media only screen and (min-width: 993px) {
+  #toast-container {
+    top: 10%;
+    right: 50%;
+    max-width: 86%;
+  }
+} */
+
 @media screen and (max-width: 600px) {
   .btn-course {
     bottom: 5.8rem;
+  }
+  .search-container {
+    padding: 1rem 8rem;
+  }
+  i.prefix {
+    top: 1.4em;
+    right: 7rem;
   }
 }
 
@@ -337,6 +458,28 @@ h6 {
   }
   h6 {
     line-height: 1.7rem;
+  }
+
+  .search-container {
+    padding: 1rem 4rem;
+  }
+
+  i.prefix {
+    top: 1.4em;
+    right: 3rem;
+  }
+
+  ::placeholder {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .corgi-courses {
+    margin-top: 0;
+  }
+  h5 {
+    margin-top: 1.2rem;
   }
 }
 </style>
