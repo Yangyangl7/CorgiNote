@@ -1,13 +1,12 @@
 <template>
   <div class="note">
     <div v-if="note">
-      <h3>Note</h3>
-      <div class="form-group">
-        <input class="form-control" type="text" v-model="note.title" placeholder="Title">
+      <div class="form-group noteTitle">
+        <input class="form-control inputTitle" type="text" v-model="note.title" placeholder="Title">
       </div>
       <div class="form-group">
         <!-- <textarea class="form-control" v-model="note.content" placeholder="Content"></textarea> -->
-        <quill-editor v-model="note.content" ref="myQuillEditor" :options="editorOption"></quill-editor>
+        <quill-editor v-model="note.content" class = "textfield" ref="myQuillEditor" :options="editorOption"></quill-editor>
       </div>
       <div class="form-group">
         <textarea class="form-control" v-model="note.date" placeholder="Date"></textarea>
@@ -15,7 +14,7 @@
       <photo-easy :note="note"/>
 
       <button class="btn btn-danger" @click="removeNote()">Remove</button>
-      
+
       <button class="btn btn-success" @click="saveNote()">Save</button>
     </div>
     <div v-else>
@@ -98,5 +97,21 @@ export default {
 <style scoped>
 .note {
   margin: 20px;
+}
+
+.textfield {
+  height: 70vh
+}
+
+.noteTitle {
+  margin-bottom: 25px;
+}
+
+.inputTitle {
+  font-weight: bold;
+  font-size: 24px;
+  font-family: fantasy;
+  letter-spacing: 2px;
+  text-align: center;
 }
 </style>
