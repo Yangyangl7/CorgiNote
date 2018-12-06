@@ -216,6 +216,21 @@ export default {
             return course.id != id;
           });
         });
+      db.collection("notes")
+        .where("courseId", "==", id)
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            doc.ref
+              .delete()
+              .then(() => {
+                console.log("note doc" + id + "has been deleted!");
+              })
+              .catch(err => {
+                console.log("deleting doc error" + err);
+              });
+          });
+        });
     }
   }
 };
@@ -245,6 +260,7 @@ a {
   height: 46px;
   bottom: 9.5rem;
   transition: all linear 200ms;
+  z-index: 3;
 }
 
 .btn-course:focus,
@@ -289,6 +305,7 @@ h6 {
   background-color: #f7f7f7;
   border: 1.5px solid #f7f7f7;
   transition: all linear 0.2s;
+  z-index: 2;
   /* margin: 1em; */
 }
 

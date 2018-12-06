@@ -45,7 +45,7 @@ var config = {
 //     projectId: "mooncake-firestore-demo",
 //     storageBucket: "mooncake-firestore-demo.appspot.com",
 //     messagingSenderId: "334864270761"
-//   };
+// };
 
 firebase.initializeApp(config);
 

@@ -91,7 +91,7 @@ export default {
         .then(() => {
           this.$router.push({ name: "CoursePage" });
         })
-        .catch(err => console.log(err));
+        .catch(error => console.log(error));
     }
   }
 };

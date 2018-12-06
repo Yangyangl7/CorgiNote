@@ -51,7 +51,7 @@
 
 <script>
 import _ from "lodash";
-import { db, auth } from "@/firebase/init";
+import { db } from "@/firebase/init";
 
 export default {
   name: "Search",
