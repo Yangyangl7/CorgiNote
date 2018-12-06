@@ -9,8 +9,15 @@ Vue.config.productionTip = false
 
 Vue.filter('snippet', val => {
   //if (!val || typeof (val) != 'string') return ''
-  if (val.length >= 50)
-    val = val.slice(0, 50) + '...'
+  if (val.length >= 35)
+    val = val.slice(0, 35) + '...'
+  return val
+})
+
+Vue.filter('titleSnippet', val => {
+  //if (!val || typeof (val) != 'string') return ''
+  if (val.length >= 25)
+    val = val.slice(0, 25) + '...'
   return val
 })
 

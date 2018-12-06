@@ -86,6 +86,7 @@ export default {
       } else {
         this.user = null;
       }
+      // this.user.email = user.email.replace(/@[^@]+$/, "");
     });
   }
 };
@@ -100,6 +101,7 @@ export default {
   color: rgba(0, 0, 0, 0.8);
   font-weight: 500;
   transition: all linear 0.2s;
+  cursor: pointer;
 }
 
 .navbar ul li a:hover,

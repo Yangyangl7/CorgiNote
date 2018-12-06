@@ -17,24 +17,14 @@ var config = {
 
 
 // Firestore (Wenjing)
-// var config = {
-//     apiKey: "AIzaSyAeK-QF1BdG9kf6l18cFJib0lTJV96AIpk",
-//     authDomain: "corgi-note.firebaseapp.com",
-//     databaseURL: "https://corgi-note.firebaseio.com",
-//     projectId: "corgi-note",
-//     storageBucket: "corgi-note.appspot.com",
-//     messagingSenderId: "406428669708"
-// };
-
-// Firestore (Wenjing)
-// var config = {
-//     apiKey: "AIzaSyAeK-QF1BdG9kf6l18cFJib0lTJV96AIpk",
-//     authDomain: "corgi-note.firebaseapp.com",
-//     databaseURL: "https://corgi-note.firebaseio.com",
-//     projectId: "corgi-note",
-//     storageBucket: "corgi-note.appspot.com",
-//     messagingSenderId: "406428669708"
-// };
+var config = {
+    apiKey: "AIzaSyAeK-QF1BdG9kf6l18cFJib0lTJV96AIpk",
+    authDomain: "corgi-note.firebaseapp.com",
+    databaseURL: "https://corgi-note.firebaseio.com",
+    projectId: "corgi-note",
+    storageBucket: "corgi-note.appspot.com",
+    messagingSenderId: "406428669708"
+};
 
 
 //  This is used for testing ( Yuhao Li)
@@ -66,7 +56,9 @@ const settings = {
     timestampsInSnapshots: true
 };
 db.settings(settings);
-db.enablePersistence({experimentalTabSynchronization:true});
+db.enablePersistence({
+    experimentalTabSynchronization: true
+});
 
 const provider = new firebase.auth.GoogleAuthProvider();
 const auth = firebase.auth();

@@ -32,18 +32,22 @@
           <div class="course-btn">
             <button type="submit" class="btn">Save</button>
             <router-link
-              to="/course"
+              :to="{ name: 'CoursePage' }"
               class="btn"
               style=" background-color: rgba(0, 0, 0, 0.3);"
             >Cancel</router-link>
+            <!-- <a href="/course" class="btn" style=" background-color: rgba(0, 0, 0, 0.3);">Cancel</a> -->
           </div>
         </form>
       </div>
     </div>
     <img class="corgi-head-web" src="@/assets/newCourse.png" alt="new course icon" width="140">
-    <router-link to="/course">
+    <router-link :to="{ name: 'CoursePage' }">
       <img class="left-arrow" src="@/assets/left-arrow.png" alt="left arrow icon" height="24">
     </router-link>
+    <!-- <a href="/course">
+      <img class="left-arrow" src="@/assets/left-arrow.png" alt="left arrow icon" height="24">
+    </a>-->
   </div>
 </template>
 
@@ -65,19 +69,17 @@ export default {
     saveCourse() {
       var month = new Date().getMonth();
 
-      if (month <= '12' && month >= '6') {
-        this.semester = '2';
-      }
-      else {
-        this.semester = '1';
+      if (month <= "12" && month >= "6") {
+        this.semester = "2";
+      } else {
+        this.semester = "1";
       }
 
-      db
-        .collection("users")
+      db.collection("users")
         .doc(this.user)
         .collection("courses")
         .add({
-          univName : this.univName,
+          univName: this.univName,
           name: this.name,
           label: this.label,
           courseId: this.courseId,
@@ -87,9 +89,9 @@ export default {
           isPublic: false
         })
         .then(() => {
-          this.$router.push({name: 'CoursePage'})
+          this.$router.push({ name: "CoursePage" });
         })
-        .catch(error => console.log(error))
+        .catch(error => console.log(error));
     }
   }
 };
@@ -122,6 +124,11 @@ h4 {
   border-bottom: 1px solid rgba(0, 0, 0, 0.7);
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.7);
 }
+input.valid[type="text"]:not(.browser-default) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.7);
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.7);
+}
+
 .course-btn {
   text-align: center;
 }
