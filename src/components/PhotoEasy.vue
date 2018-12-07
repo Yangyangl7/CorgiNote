@@ -100,7 +100,7 @@ var storageRef = storage.ref();
               
               self.$toasted.show("Photo Success Stored", { 
                 theme: "outline", 
-                position: "top-center", 
+                position: "bottom-center", 
                 duration : 3000
               });
             });
