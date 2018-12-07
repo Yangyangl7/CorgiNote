@@ -141,7 +141,7 @@ export default {
             self.$router.push({ name: "Search", params: { userId: email } });
           } else {
             console.log("No such user");
-            self.$toasted.show("Sorry, No Such User.", { 
+            self.$toasted.show("Sorry, No Such User", { 
               theme: "outline", 
               position: "top-center", 
               duration : 1500
