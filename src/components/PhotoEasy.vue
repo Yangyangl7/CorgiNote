@@ -42,12 +42,18 @@ var storageRef = storage.ref();
       deleteImg(imgUrl,note) {
         var desertRef =storage.refFromURL(imgUrl);
         desertRef.delete().then(function() {
+            self.$toasted.show("Photo Success Delete", { 
+              theme: "outline", 
+              position: "top-center", 
+              duration : 3000
+            });
             // File deleted successfully
           });
           note.imgUrls = note.imgUrls.filter(function(e) { return e != imgUrl })
         
       },
       uploadImg(note){
+        let self = this;
         var metadata = {
           contentType: 'image/jpeg'
         };
@@ -88,10 +94,16 @@ var storageRef = storage.ref();
                 break;
             }
           },function() {
-          // Upload completed successfully, now we can get the download URL
-          uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-            note.imgUrls.push(downloadURL);
-          });
+            // Upload completed successfully, now we can get the download URL
+            uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+              note.imgUrls.push(downloadURL);
+              
+              self.$toasted.show("Photo Success Stored", { 
+                theme: "outline", 
+                position: "top-center", 
+                duration : 3000
+              });
+            });
           });
       }
     }

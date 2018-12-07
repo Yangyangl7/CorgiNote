@@ -71,6 +71,12 @@ export default {
       } else {
         this.createNote(note);
       }
+
+      self.$toasted.show("Photo Success Saved", { 
+            theme: "outline", 
+            position: "top-center", 
+            duration : 1500
+      });
     },
     updateNote(note) {
       noteCollection.doc(note.id).update({
@@ -87,6 +93,12 @@ export default {
     removeNote() {
       const id = this.note.id;
       noteCollection.doc(id).delete();
+
+      self.$toasted.show("Photo Success Removed", { 
+            theme: "outline", 
+            position: "top-center", 
+            duration : 1500
+      });
     }
   },
   computed: {
