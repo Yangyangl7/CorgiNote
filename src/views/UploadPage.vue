@@ -94,6 +94,7 @@ export default {
   },
   created() {
     noteCollection
+      .orderBy("date", "desc")
       .where("courseId", "==", this.$route.params.courseId)
       .where("userId", "==", auth.currentUser.uid)
       .get()

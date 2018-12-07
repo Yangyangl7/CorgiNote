@@ -41,7 +41,7 @@
       >+ Note</router-link>-->
       <div class="newBtn">
         <router-link
-          :to="{name: 'Note', params: {note: {imgUrls:[]},noteId:notes.length,courseId:this.$route.params.courseId}}"
+          :to="{name: 'Note', params: {note: {imgUrls:[],title:'',content:''},noteId:notes.length,courseId:this.$route.params.courseId}}"
           class="btn waves-effect waves-light btn-course"
         >
           <i class="material-icons left" style="font-size:1rem">add</i>Create New Note

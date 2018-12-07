@@ -3,18 +3,17 @@ import "firebase/firestore";
 import "firebase/auth";
 import "firebase/storage"
 
+// Initialize Firebase
 
 // Firestore (luo yangyang)
-// Initialize Firebase
-var config = {
-  apiKey: "AIzaSyBmai8i36KohsH1D3yT-XqrktrJsPA1hJw",
-  authDomain: "csci5117-mooncake-project2.firebaseapp.com",
-  databaseURL: "https://csci5117-mooncake-project2.firebaseio.com",
-  projectId: "csci5117-mooncake-project2",
-  storageBucket: "csci5117-mooncake-project2.appspot.com",
-  messagingSenderId: "228207579873"
-};
-
+// var config = {
+//   apiKey: "AIzaSyBmai8i36KohsH1D3yT-XqrktrJsPA1hJw",
+//   authDomain: "csci5117-mooncake-project2.firebaseapp.com",
+//   databaseURL: "https://csci5117-mooncake-project2.firebaseio.com",
+//   projectId: "csci5117-mooncake-project2",
+//   storageBucket: "csci5117-mooncake-project2.appspot.com",
+//   messagingSenderId: "228207579873"
+// };
 
 // Firestore (Wenjing)
 // var config = {
@@ -25,7 +24,6 @@ var config = {
 //     storageBucket: "corgi-note.appspot.com",
 //     messagingSenderId: "406428669708"
 // };
-
 
 //  This is used for testing ( Yuhao Li)
 // var config = {
@@ -50,7 +48,6 @@ var config = {
 firebase.initializeApp(config);
 
 const db = firebase.firestore();
-
 
 const settings = {
     timestampsInSnapshots: true
