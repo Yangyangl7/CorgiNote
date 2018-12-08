@@ -6,10 +6,12 @@
         <NotesList
           @app-addNote="addNote"
           @app-changeNote="changeNote"
+          @app-removeNote="removeNote"
           :notes="notes"
           :courseId="this.$route.params.courseId"
           :activeNote="index"
           :courseInfo="courseInfo"
+          :newNotes="newNotes"
         />
       </div>
       <!-- <div class="col-sm-6"> -->
@@ -50,7 +52,8 @@ export default {
     notes: [],
     index: 0,
     user: auth.currentUser.email,
-    courseInfo: []
+    courseInfo: [],
+    newNotes: []
   }),
   methods: {
     addNote() {
@@ -87,9 +90,16 @@ export default {
     createNote(note) {
       noteCollection.add(note);
     },
-    removeNote() {
-      const id = this.notes[this.index].id;
-      noteCollection.doc(id).delete();
+    removeNote(id) {
+      // const id = this.notes[this.index].id;
+      noteCollection
+        .doc(id)
+        .delete()
+        .then(() => {
+          this.newNotes = this.newNotes.filter(note => {
+            return note.id != id;
+          });
+        });
     }
   },
   created() {
@@ -103,6 +113,14 @@ export default {
             id: doc.id,
             title: doc.data().title,
             content: doc.data().content,
+            date: doc.data().date,
+            imgUrls: doc.data().imgUrls,
+            courseId: doc.data().courseId
+          });
+          this.newNotes.push({
+            id: doc.id,
+            title: doc.data().title,
+            content: doc.data().content.replace(/(<p[^>]+?>|<p>|<\/p>)/gim, ""),
             date: doc.data().date,
             imgUrls: doc.data().imgUrls,
             courseId: doc.data().courseId
@@ -149,14 +167,18 @@ export default {
             console.log("note was updated: ", updatedNote);
           }
           if (change.type === "removed") {
-            const deletedNote = this.notes.find(
-              note => note.id === change.doc.id
-            );
-            console.log("note was removed: ", deletedNote);
+            // const deletedNote = this.notes.find(
+            //   note => note.id === change.doc.id
+            // );
+            // console.log("note was removed: ", deletedNote);
 
-            const index = this.notes.indexOf(deletedNote);
-            this.notes.splice(index, 1);
-            this.index = this.index === 0 ? 0 : index - 1;
+            // const index = this.notes.indexOf(deletedNote);
+            // this.notes.splice(index, 1);
+            // this.index = this.index === 0 ? 0 : index - 1;
+
+            this.newNotes = this.newNotes.filter(note => {
+              return note.id != change.doc.id;
+            });
           }
         });
       });

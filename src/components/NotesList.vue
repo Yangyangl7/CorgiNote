@@ -15,7 +15,11 @@
       <!-- </div> -->
       <div v-if="notes.length !== 0">
         <h5 class="course-note">{{ courseInfo.label }} {{ courseInfo.name }}</h5>
-        <div class="note-container col s12 m6 l6" v-for="(note, index) in notes" :key="note.index">
+        <div
+          class="note-container col s12 m6 l6"
+          v-for="(note, index) in newNotes"
+          :key="note.index"
+        >
           <ul class="card">
             <li
               class="card-content"
@@ -23,12 +27,12 @@
               @click="changeNote(index)"
             >
               <span class="dot"></span>
-              <span class="remove">&times;</span>
+              <span class="remove" @click="removeNote(note.id)">&times;</span>
               <router-link
                 :to="{name: 'Note', params: {note: note,noteId:index,courseId:note.courseId}}"
               >
                 <div class="note-title">{{ note.title | titleSnippet }}</div>
-                <div class="note-content">{{ note.content | snippet}}</div>
+                <div class="note-content">{{ note.content | snippet }}</div>
               </router-link>
             </li>
           </ul>
@@ -56,13 +60,16 @@
 <script>
 export default {
   name: "NoteList",
-  props: ["notes", "activeNote", "courseId", "courseInfo"],
+  props: ["notes", "activeNote", "courseId", "courseInfo", "newNotes"],
   methods: {
     changeNote(index) {
       this.$emit("app-changeNote", index);
     },
     addNote() {
       this.$emit("app-addNote");
+    },
+    removeNote(id) {
+      this.$emit("app-removeNote", id);
     }
   }
 };
@@ -170,6 +177,37 @@ h6 {
 .note-content {
   color: rgba(0, 0, 0, 0.4);
   margin-top: 0.7rem;
+}
+
+.dot {
+  height: 1rem;
+  width: 1rem;
+  background-color: #fff;
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+  right: 0.8rem;
+  top: 0.6rem;
+  transition: all linear 0.2s;
+  cursor: pointer;
+}
+.remove {
+  position: absolute;
+  right: 1rem;
+  top: 0.1rem;
+  font-size: 1.4rem;
+  color: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.card:hover .dot,
+.card:focus .dot {
+  background-color: #eb8d21;
+}
+
+.card:hover .remove,
+.card:focus .remove {
+  color: #fff;
 }
 
 @media screen and (max-width: 600px) {
