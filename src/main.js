@@ -4,8 +4,11 @@ import App from './App.vue'
 import router from './router'
 import firebase from 'firebase/app'
 import './registerServiceWorker'
+import Toasted from 'vue-toasted';
+ 
+Vue.use(Toasted);
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 Vue.filter('snippet', val => {
   //if (!val || typeof (val) != 'string') return ''

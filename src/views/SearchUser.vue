@@ -23,7 +23,7 @@
           <ul class="card" style="margin-right:auto;margin-left:auto">
             <li class="card-content" style="position:relative">
               <router-link
-                :to="{ name: 'CommentPage', params: { courseId: course.id, courseName:course.name } }"
+                :to="{ name: 'SharedNoteList', params: { courseId:course.id, courseName:course.name, userId:searchUser } }"
                 class="btn-note"
               >
                 <div>

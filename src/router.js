@@ -5,10 +5,11 @@ import Login from '@/views/Login'
 import CoursePage from '@/views/CoursePage'
 import ErrorPage from '@/views/ErrorPage'
 import NewCoursePage from '@/views/NewCourse'
-// import NotePage from '@/views/NotePage'
 import UploadPage from '@/views/UploadPage'
 import Note from '@/components/Note'
 import Search from '@/views/SearchUser'
+import SharedNoteList from '@/views/SharedNotesPage'
+import CommentNote from '@/views/CommentNotePage'
 
 import {
   auth
@@ -74,9 +75,25 @@ const router = new Router({
       }
     },
     {
-      path: "/search",
+      path: "/search/:userId",
       name: 'Search',
       component: Search,
+      meta: {
+        requireAuth: true
+      }
+    },
+    {
+      path: "/search/:userId/:courseName/:courseId",
+      name: 'SharedNoteList',
+      component: SharedNoteList,
+      meta: {
+        requireAuth: true
+      }
+    },
+    {
+      path: "/search/:userId/:courseName/:courseId/:noteId",
+      name: 'CommentNote',
+      component: CommentNote,
       meta: {
         requireAuth: true
       }

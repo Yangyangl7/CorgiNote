@@ -80,7 +80,6 @@
 </template>
 
 <script>
-import _ from "lodash";
 import { db, auth } from "@/firebase/init";
 
 export default {
@@ -93,7 +92,6 @@ export default {
     };
   },
   created() {
-    // this.getCourse();
     this.myCourses = [];
     let self = this;
 
@@ -129,38 +127,13 @@ export default {
         });
       });
   },
-  computed: {
-    // orderedCourses: function() {
-    //   return _.orderBy(this.myCourses, "date", "desc");
-    // }
-  },
   methods: {
-    // getCourse() {
-    //   this.myCourses = [];
-    //   let self = this;
-    //   db.collection("users")
-    //     .doc(self.user)
-    //     .collection("courses")
-    //     .get()
-    //     .then(function(querySnapshot) {
-    //       querySnapshot.forEach(function(doc) {
-    //         self.myCourses.push({
-    //           id: doc.id,
-    //           isPublic: doc.data().isPublic,
-    //           num: doc.data().courseId,
-    //           name: doc.data().name,
-    //           year: doc.data().year,
-    //           label: doc.data().label,
-    //           semester: doc.data().semester,
-    //           date: doc.data().createdTime
-    //         });
-    //       });
-    //     });
-    // },
     searchUsers() {
       var email = this.searchUser;
       let self = this;
-      db.collection("users")
+
+      if (email) {
+         db.collection("users")
         .doc(email)
         .get()
         .then(function(doc) {
@@ -168,12 +141,14 @@ export default {
             self.$router.push({ name: "Search", params: { userId: email } });
           } else {
             console.log("No such user");
-            window.M.toast({
-              html: "No Such User Here.",
-              displayLength: "3000"
+            self.$toasted.show("Sorry, No Such User", { 
+              theme: "outline", 
+              position: "top-center", 
+              duration : 1500
             });
           }
         });
+      }
     },
     changeState(course) {
       var state;
@@ -186,15 +161,6 @@ export default {
 
       console.log(course.name + ": " + course.isPublic + " to: " + state);
       course.isPublic = state;
-
-      //Mind changed, don't need to be realtime to implement
-      // db.collection("users")
-      //   .doc(self.user)
-      //   .collection("courses")
-      //   .doc(course.id)
-      //   .onSnapshot(function(doc) {
-      //     course.isPublic = doc.data().isPublic
-      //   })
 
       db.collection("users")
         .doc(self.user)
@@ -237,6 +203,17 @@ export default {
 </script>
 
 <style scoped>
+#toast-container {
+    position: fixed !important;
+    bottom: 0px !important;
+    left: 0px !important;
+}
+
+.toast {
+  position: fixed !important;
+  top: 50px !important;
+}
+
 a {
   color: rgba(0, 0, 0, 0.8);
 }
