@@ -133,21 +133,21 @@ export default {
       let self = this;
 
       if (email) {
-         db.collection("users")
-        .doc(email)
-        .get()
-        .then(function(doc) {
-          if (doc.id != self.user && doc.exists) {
-            self.$router.push({ name: "Search", params: { userId: email } });
-          } else {
-            console.log("No such user");
-            self.$toasted.show("Sorry, No Such User", { 
-              theme: "outline", 
-              position: "top-center", 
-              duration : 1500
-            });
-          }
-        });
+        db.collection("users")
+          .doc(email)
+          .get()
+          .then(function(doc) {
+            if (doc.id != self.user && doc.exists) {
+              self.$router.push({ name: "Search", params: { userId: email } });
+            } else {
+              console.log("No such user");
+              self.$toasted.show("Sorry, No Such User", {
+                theme: "toasted-primary",
+                position: "top-center",
+                duration: 1500
+              });
+            }
+          });
       }
     },
     changeState(course) {
@@ -204,9 +204,9 @@ export default {
 
 <style scoped>
 #toast-container {
-    position: fixed !important;
-    bottom: 0px !important;
-    left: 0px !important;
+  position: fixed !important;
+  bottom: 0px !important;
+  left: 0px !important;
 }
 
 .toast {

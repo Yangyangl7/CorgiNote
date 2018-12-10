@@ -15,11 +15,7 @@
       <!-- </div> -->
       <div v-if="notes.length !== 0">
         <h5 class="course-note">{{ courseInfo.label }} {{ courseInfo.name }}</h5>
-        <div
-          class="note-container col s12 m6 l6"
-          v-for="(note, index) in newNotes"
-          :key="note.index"
-        >
+        <div class="note-container col s12 m6 l6" v-for="(note, index) in notes" :key="note.index">
           <ul class="card">
             <li
               class="card-content"
@@ -31,8 +27,9 @@
               <router-link
                 :to="{name: 'Note', params: {note: note,noteId:index,courseId:note.courseId}}"
               >
-                <div class="note-title">{{ note.title | titleSnippet }}</div>
-                <div class="note-content">{{ note.content | snippet }}</div>
+                <!-- <div class="note-title">{{ note.title | titleSnippet }}</div> -->
+                <div class="note-title">{{ note.content | getText | titleSnippet }}</div>
+                <div class="note-date">{{ note.date | getDate }}</div>
               </router-link>
             </li>
           </ul>
@@ -60,7 +57,7 @@
 <script>
 export default {
   name: "NoteList",
-  props: ["notes", "activeNote", "courseId", "courseInfo", "newNotes"],
+  props: ["notes", "activeNote", "courseId", "courseInfo"],
   methods: {
     changeNote(index) {
       this.$emit("app-changeNote", index);
@@ -174,7 +171,7 @@ h6 {
   font-weight: 600;
 }
 
-.note-content {
+.note-date {
   color: rgba(0, 0, 0, 0.4);
   margin-top: 0.7rem;
 }

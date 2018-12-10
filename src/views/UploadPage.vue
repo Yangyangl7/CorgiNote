@@ -11,7 +11,6 @@
           :courseId="this.$route.params.courseId"
           :activeNote="index"
           :courseInfo="courseInfo"
-          :newNotes="newNotes"
         />
       </div>
       <!-- <div class="col-sm-6"> -->
@@ -52,13 +51,13 @@ export default {
     notes: [],
     index: 0,
     user: auth.currentUser.email,
-    courseInfo: [],
-    newNotes: []
+    courseInfo: []
+    // newNotes: []
   }),
   methods: {
     addNote() {
-      this.notes.push({
-        title: "",
+      this.notes.unshift({
+        // title: "",
         content: "",
         date: "",
         imgUrls: [],
@@ -80,7 +79,7 @@ export default {
     },
     updateNote(note) {
       noteCollection.doc(note.id).update({
-        title: note.title,
+        // title: note.title,
         content: note.content,
         date: note.date,
         imgUrls: note.imgUrls,
@@ -96,7 +95,7 @@ export default {
         .doc(id)
         .delete()
         .then(() => {
-          this.newNotes = this.newNotes.filter(note => {
+          this.notes = this.notes.filter(note => {
             return note.id != id;
           });
         });
@@ -104,30 +103,41 @@ export default {
   },
   created() {
     noteCollection
-      .orderBy("date", "desc")
+      .orderBy("date")
       .where("courseId", "==", this.$route.params.courseId)
       .where("userId", "==", auth.currentUser.uid)
       .get()
       .then(snapshot => {
         snapshot.forEach(doc => {
-          this.notes.push({
+          this.notes.unshift({
             id: doc.id,
-            title: doc.data().title,
+            // title: doc.data().title,
             content: doc.data().content,
-            date: doc.data().date,
-            imgUrls: doc.data().imgUrls,
-            courseId: doc.data().courseId
-          });
-          this.newNotes.push({
-            id: doc.id,
-            title: doc.data().title,
-            content: doc.data().content.replace(/(<p[^>]+?>|<p>|<\/p>)/gim, ""),
             date: doc.data().date,
             imgUrls: doc.data().imgUrls,
             courseId: doc.data().courseId
           });
         });
       });
+
+    // noteCollection
+    //   .orderBy("date", "desc")
+    //   .where("courseId", "==", this.$route.params.courseId)
+    //   .where("userId", "==", auth.currentUser.uid)
+    //   .get()
+    //   .then(snapshot => {
+    //     snapshot.forEach(doc => {
+    //       this.newNotes.push({
+    //         id: doc.id,
+    //         title: doc.data().title,
+    //         // content: doc.data().content.replace(/<(?:.|\n)*?>/gm, ""),
+    //         content: doc.data().content,
+    //         date: doc.data().date,
+    //         imgUrls: doc.data().imgUrls,
+    //         courseId: doc.data().courseId
+    //       });
+    //     });
+    //   });
 
     // Get Course Info
     let self = this;
@@ -159,7 +169,7 @@ export default {
             const updatedNote = this.notes.find(
               note => note.id === change.doc.id
             );
-            updatedNote.title = change.doc.data().title;
+            // updatedNote.title = change.doc.data().title;
             updatedNote.content = change.doc.data().content;
             updatedNote.date = change.doc.data().date;
             updatedNote.imgUrls = change.doc.data().imgUrls;
@@ -177,7 +187,7 @@ export default {
             // this.notes.splice(index, 1);
             // this.index = this.index === 0 ? 0 : index - 1;
 
-            this.newNotes = this.newNotes.filter(note => {
+            this.notes = this.notes.filter(note => {
               return note.id != change.doc.id;
             });
           }
