@@ -29,6 +29,7 @@
         <!-- <button class="btn btn-danger" @click="removeNote()">Remove</button>
         <button class="btn btn-success" @click="saveNote()">Save</button>-->
         <photo-easy :note="note"/>
+        <Comment></Comment>
       </div>
       <div v-else>
         <h5>Please create new Note...</h5>
@@ -52,6 +53,7 @@ import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
 import "quill/dist/quill.bubble.css";
 import { quillEditor } from "vue-quill-editor";
+import Comment from "./Comment.vue";
 
 const noteCollection = db.collection("notes");
 
@@ -59,7 +61,8 @@ export default {
   name: "Note",
   components: {
     PhotoEasy,
-    quillEditor
+    quillEditor,
+    Comment
   },
   props: ["note", "noteId", "courseId"],
   data() {
