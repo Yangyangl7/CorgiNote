@@ -136,7 +136,8 @@ h5 {
 }
 .newBtn .btn:focus,
 .newBtn .btn:hover {
-  background-color: #e0903e;
+  /* background-color: #e0903e; */
+  background-color: #86addd;
 }
 
 .card {
@@ -164,12 +165,14 @@ h5 {
 .card:hover,
 .card:focus {
   background-color: #fff;
-  border: 1.5px solid #eb8d21; /* Brighter orange color */
+  /* border: 1.5px solid #eb8d21;  */
+  border: 1.5px solid #86addd;
 }
 
 .card:hover .course-info,
 .card:focus .course-info {
-  color: #eb8d21;
+  /* color: #eb8d21; */
+  color: #86addd;
 }
 
 .semester {

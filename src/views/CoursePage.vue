@@ -26,6 +26,12 @@
             <h6>Now it’s the time to create your first course and take notes for it!</h6>
           </div>
         </div>
+
+        <div class="newBtn">
+          <router-link to="/new" class="btn waves-effect waves-light btn-course">
+            <i class="material-icons left" style="font-size:1rem">add</i>Create New Course
+          </router-link>
+        </div>
       </div>
       <div v-if="myCourses.length != 0">
         <h5 style="margin-top:3.2rem;margin-bottom:2rem">Courses You Have Created</h5>
@@ -69,11 +75,11 @@
             </ul>
           </div>
         </div>
-      </div>
-      <div class="newBtn">
-        <router-link to="/new" class="btn waves-effect waves-light btn-course">
-          <i class="material-icons left" style="font-size:1rem">add</i>Create New Course
-        </router-link>
+        <div class="newBtn">
+          <router-link to="/new" class="btn waves-effect waves-light btn-course btn-round">
+            <i class="material-icons" style="font-size:1.2rem;">add</i>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -243,6 +249,14 @@ a {
 .btn-course:focus,
 .btn-course:hover {
   background-color: #e0903e;
+}
+
+.btn-round {
+  border-radius: 50%;
+  box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.14);
+  bottom: 5.5rem;
+  height: 50px;
+  padding: 6px 16px 5px 16px;
 }
 
 .collection {
@@ -470,7 +484,7 @@ i.prefix {
 
 @media screen and (max-width: 320px) {
   .corgi-courses {
-    margin-top: 0;
+    margin-top: -1rem;
   }
   h5 {
     margin-top: 1.2rem;

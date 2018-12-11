@@ -8,30 +8,38 @@
         </div>
       </div>
     </div>
-    <div class="col s12">
-      <div v-if="sharedNotes.length !== 0">
-        <h5 class="course-note">{{ this.courseName }}</h5>
-        <div class="note-container col s12 m6 l6" v-for="note in sharedNotes" :key="note.index">
-          <ul class="card">
-            <!-- <li
+    <div class="row">
+      <div class="col s12">
+        <div v-if="sharedNotes.length !== 0">
+          <h5 class="course-note">{{ this.courseName }}</h5>
+          <div class="note-container col s12 m6 l6" v-for="note in sharedNotes" :key="note.index">
+            <ul class="card">
+              <!-- <li
                         class="card-content"
                         :class="{ 'active': index === activeNote}"
                         @click="changeNote(index)"
                         >
                             <span class="dot"></span>
-            <span class="remove">&times;</span>-->
-            <li class="card-content">
-              <router-link
-                :to="{name: 'CommentNote', params: { noteId:note.id, courseId:courseId}}"
-              >
-                <!-- <div class="note-title">{{ note.title | titleSnippet }}</div> -->
-                <!-- <div class="note-content">{{ note.content | snippet}}</div> -->
-                <div class="note-title">{{ note.content | getText | titleSnippet }}</div>
-                <div class="note-date">{{ note.date | getDate }}</div>
-              </router-link>
-            </li>
-            <!-- </li> -->
-          </ul>
+              <span class="remove">&times;</span>-->
+              <li class="card-content">
+                <router-link
+                  :to="{name: 'CommentNote', params: { noteId:note.id, courseId:courseId}}"
+                >
+                  <!-- <div class="note-title">{{ note.title | titleSnippet }}</div> -->
+                  <!-- <div class="note-content">{{ note.content | snippet}}</div> -->
+                  <div class="note-title">{{ note.content | getText | titleSnippet }}</div>
+                  <div class="note-date">{{ note.date | getDate }}</div>
+                </router-link>
+              </li>
+              <!-- </li> -->
+            </ul>
+          </div>
+        </div>
+        <div class="newBtn">
+          <router-link
+            :to="{ name: 'Search' }"
+            class="btn waves-effect waves-light btn-course"
+          >Back To Course List</router-link>
         </div>
       </div>
     </div>
@@ -114,7 +122,8 @@ h5 {
   margin-top: 2.2rem;
   margin-bottom: 1.2rem;
   letter-spacing: 0.9px;
-  background-color: rgba(241, 211, 159, 0.6);
+  /* background-color: rgba(241, 211, 159, 0.6); */
+  background-color: rgba(134, 173, 221, 0.3);
   width: 24rem;
   margin-left: auto;
   margin-right: auto;
@@ -154,7 +163,8 @@ h6 {
 
 .btn-course:focus,
 .btn-course:hover {
-  background-color: #e0903e;
+  /* background-color: #e0903e; */
+  background-color: #86addd;
 }
 
 .centerText {
@@ -178,6 +188,7 @@ h6 {
 .card:focus {
   background-color: #fff;
   border: 1.5px solid #eb8d21;
+  border: 1.5px solid #86addd;
 }
 
 .card .card-content {

@@ -9,8 +9,8 @@
           <li>
             <router-link :to="{name: 'UploadPage', params: {courseId:courseId}}">&#8592; Back</router-link>
           </li>
-          <li @click="removeNote()">Remove</li>
           <li @click="saveNote()">Save</li>
+          <li @click="removeNote()" class="remove-btn">Remove</li>
         </ul>
 
         <div class="form-group textfield">
@@ -29,11 +29,9 @@
         <!-- <button class="btn btn-danger" @click="removeNote()">Remove</button>
         <button class="btn btn-success" @click="saveNote()">Save</button>-->
         <photo-easy :note="note"/>
-        <div v-if="newlyCreated">
-        
-        </div>
+        <div v-if="newlyCreated"></div>
         <div v-else>
-        <Comment></Comment>
+          <Comment></Comment>
         </div>
       </div>
       <div v-else>
@@ -69,7 +67,7 @@ export default {
     quillEditor,
     Comment
   },
-  props: ["note", "noteId", "courseId","newlyCreated"],
+  props: ["note", "noteId", "courseId", "newlyCreated"],
   data() {
     return {
       content: "<h2>I am Example</h2>",
@@ -166,14 +164,6 @@ a {
   /* background-color: #fff; */
 }
 
-@media screen and (max-width: 420px) {
-  .note-container {
-    /* margin: 20px; */
-    padding: 10px;
-    width: 100%;
-    margin: auto;
-  }
-}
 .textfield {
   height: 82vh;
   margin-bottom: 0.8rem;
@@ -182,7 +172,6 @@ a {
   border: none;
   border-radius: 3px;
   box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
-
   /* margin-bottom: 1px solid #ddd; */
 }
 
@@ -215,6 +204,15 @@ a {
   color: #eb8d21;
 }
 
+.note-btns li.remove-btn {
+  color: #ddd;
+}
+
+.note-btns li.remove-btn:hover,
+.note-btns li.remove-btn:focus {
+  color: #eb8d21;
+}
+
 .note-btns li a {
   transition: all linear 0.2s;
   cursor: pointer;
@@ -223,5 +221,36 @@ a {
 .note-btns li a:hover,
 .note-btns li a:focus {
   color: #eb8d21;
+}
+
+@media screen and (max-width: 900px) {
+  .note-container {
+    padding: 10px 10px;
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .textfield {
+    height: 88vh;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .note-container {
+    /* margin: 20px; */
+    padding: 10px;
+    width: 100%;
+    margin: auto;
+  }
+  .commentArea {
+    margin-bottom: 0.3rem;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .textfield {
+    height: 93vh;
+  }
 }
 </style>
