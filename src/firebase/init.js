@@ -16,14 +16,14 @@ import "firebase/storage"
 // };
 
 // Firestore (Wenjing)
-var config = {
-    apiKey: "AIzaSyAeK-QF1BdG9kf6l18cFJib0lTJV96AIpk",
-    authDomain: "corgi-note.firebaseapp.com",
-    databaseURL: "https://corgi-note.firebaseio.com",
-    projectId: "corgi-note",
-    storageBucket: "corgi-note.appspot.com",
-    messagingSenderId: "406428669708"
-};
+// var config = {
+//     apiKey: "AIzaSyAeK-QF1BdG9kf6l18cFJib0lTJV96AIpk",
+//     authDomain: "corgi-note.firebaseapp.com",
+//     databaseURL: "https://corgi-note.firebaseio.com",
+//     projectId: "corgi-note",
+//     storageBucket: "corgi-note.appspot.com",
+//     messagingSenderId: "406428669708"
+// };
 
 //  This is used for testing ( Yuhao Li)
 // var config = {
@@ -36,14 +36,14 @@ var config = {
 // };
 
 // Batu's config
-// var config = {
-//     apiKey: "AIzaSyAGt1H4ED9v2Y_O0kUjINsCuQdgO3Y9Zh0",
-//     authDomain: "mooncake-firestore-demo.firebaseapp.com",
-//     databaseURL: "https://mooncake-firestore-demo.firebaseio.com",
-//     projectId: "mooncake-firestore-demo",
-//     storageBucket: "mooncake-firestore-demo.appspot.com",
-//     messagingSenderId: "334864270761"
-//   };
+var config = {
+    apiKey: "AIzaSyAGt1H4ED9v2Y_O0kUjINsCuQdgO3Y9Zh0",
+    authDomain: "mooncake-firestore-demo.firebaseapp.com",
+    databaseURL: "https://mooncake-firestore-demo.firebaseio.com",
+    projectId: "mooncake-firestore-demo",
+    storageBucket: "mooncake-firestore-demo.appspot.com",
+    messagingSenderId: "334864270761"
+  };
 
 firebase.initializeApp(config);
 
