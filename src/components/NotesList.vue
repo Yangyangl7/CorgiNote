@@ -25,7 +25,7 @@
               <span class="dot"></span>
               <span class="remove" @click="removeNote(note.id)">&times;</span>
               <router-link
-                :to="{name: 'Note', params: {note:note, noteId:index, courseId:note.courseId}}"
+                :to="{name: 'Note', params: {note: note,noteId:note.id,courseId:note.courseId,newlyCreated:false}}"
               >
                 <!-- <div class="note-title">{{ note.title | titleSnippet }}</div> -->
                 <div class="note-title">{{ note.content | getText | titleSnippet }}</div>
@@ -42,7 +42,7 @@
       >+ Note</router-link>-->
       <div class="newBtn">
         <router-link
-          :to="{name: 'Note', params: {note: {imgUrls:[],title:'',content:''},noteId:notes.length,courseId:this.$route.params.courseId}}"
+          :to="{name: 'Note', params: {note: {imgUrls:[],title:'',content:''},noteId:notes.length,courseId:this.$route.params.courseId,newlyCreated:true}}"
           class="btn waves-effect waves-light btn-course"
         >
           <i class="material-icons left" style="font-size:1rem">add</i>Create New Note
