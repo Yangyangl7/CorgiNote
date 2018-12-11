@@ -6,6 +6,8 @@ import firebase from 'firebase/app'
 import './registerServiceWorker'
 import Toasted from 'vue-toasted';
 
+
+
 Vue.use(Toasted);
 
 Vue.config.productionTip = false;

@@ -5,8 +5,14 @@
     </label>
     <button v-if="file" class="btn btn-upload" @click="uploadImg(note)">Upload Image > 1 Mb</button>
 
+    <div class="lightbox-overlay" v-if="overlayActive" @click.self="closeOverlay">
+      <div @click.self="closeOverlay" class="overlay-img">
+        <img :src="currentImage" width="100%">
+      </div>
+    </div>
+
     <li v-for="imgUrlOne in note.imgUrls " :key="imgUrlOne" class="photo-thumbnail">
-      <div class="image-frame">
+      <div class="image-frame" @click="clickImage(imgUrlOne)">
         <img :src="imgUrlOne" width="50px" class="upload-image">
       </div>
       <!-- <button class="btn btn-danger" @click="deleteImg(imgUrlOne,note)">delete</button> -->
@@ -24,7 +30,6 @@
 
 <script>
 import firebase from "firebase/app";
-
 import "firebase/firestore";
 import "firebase/storage";
 import { storage } from "../firebase/init";
@@ -37,6 +42,8 @@ export default {
   props: ["note"],
   data() {
     return {
+      currentImage: "",
+      overlayActive: false,
       imgUrl: null,
       imgNames: [],
       imgUrls: [],
@@ -45,6 +52,13 @@ export default {
   },
 
   methods: {
+    closeOverlay() {
+      this.overlayActive = false;
+    },
+    clickImage(src) {
+      this.currentImage = src;
+      this.overlayActive = true;
+    },
     onChange(files) {
       this.imgUrl = URL.createObjectURL(files[0]);
       this.file = files[0];
@@ -227,5 +241,24 @@ li.photo-thumbnail {
   display: inline-block;
   position: relative;
   top: 0.9rem;
+}
+.lightbox-overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.9);
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+.overlay-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>
