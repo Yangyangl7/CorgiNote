@@ -122,7 +122,8 @@ h5 {
   margin-top: 2.2rem;
   margin-bottom: 1.2rem;
   letter-spacing: 0.9px;
-  background-color: rgba(241, 211, 159, 0.6);
+  /* background-color: rgba(241, 211, 159, 0.6); */
+  background-color: rgba(134, 173, 221, 0.3);
   width: 24rem;
   margin-left: auto;
   margin-right: auto;
@@ -162,7 +163,8 @@ h6 {
 
 .btn-course:focus,
 .btn-course:hover {
-  background-color: #e0903e;
+  /* background-color: #e0903e; */
+  background-color: #86addd;
 }
 
 .centerText {
@@ -186,6 +188,7 @@ h6 {
 .card:focus {
   background-color: #fff;
   border: 1.5px solid #eb8d21;
+  border: 1.5px solid #86addd;
 }
 
 .card .card-content {

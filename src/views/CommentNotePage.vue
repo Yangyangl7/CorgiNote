@@ -99,6 +99,7 @@ export default {
 
 .note {
   background-color: #fafafa;
+  height: 100%;
 }
 
 a {
@@ -112,14 +113,6 @@ a {
   /* background-color: #fff; */
 }
 
-@media screen and (max-width: 420px) {
-  .note-container {
-    /* margin: 20px; */
-    padding: 10px;
-    width: 100%;
-    margin: auto;
-  }
-}
 .textfield {
   height: 100%;
   margin-top: 1rem;
@@ -138,6 +131,7 @@ a {
   color: rgba(0, 0, 0, 0.7);
   cursor: pointer;
   margin-top: 1rem;
+  font-size: 1.2rem;
 }
 
 .note-btns a {
@@ -146,7 +140,39 @@ a {
 
 .note-btns a:hover,
 .note-btns a:focus {
-  color: #eb8d21;
+  /* color: #eb8d21; */
+  color: #86addd;
+}
+
+@media screen and (max-width: 900px) {
+  .note-container {
+    padding: 10px 10px;
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .textfield {
+    /* height: 88vh; */
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .note-container {
+    /* margin: 20px; */
+    padding: 10px;
+    width: 100%;
+    margin: auto;
+  }
+  .commentArea {
+    margin-bottom: 0.3rem;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .textfield {
+    /* height: 92vh; */
+  }
 }
 </style>
 
