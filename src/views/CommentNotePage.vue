@@ -4,7 +4,7 @@
             <h5 class="title">{{this.title}}</h5>
             <h5 class="content">{{this.content}}</h5>
         </div>
-        <Comment></Comment>
+        <Comment :noteId1="this.$route.params.noteId"></Comment>
     </div>
 </template>
 

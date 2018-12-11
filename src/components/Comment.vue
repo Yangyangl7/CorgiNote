@@ -9,7 +9,6 @@
                   type="text"
                   v-model="inputComment"
                   placeholder="Add comment"
-                  @keyup.enter="saveComment(inputComment)"
                 >
                 <i class="small material-icons submit-button prefix" @click="saveComment(inputComment)">edit</i>
               </div>
@@ -52,6 +51,7 @@ import { db, auth} from "@/firebase/init";
 
 export default {
     name: "Comment",
+    props: ["noteId1"],
     data () {
         return {
             user: auth.currentUser.email,
