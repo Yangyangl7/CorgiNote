@@ -165,7 +165,8 @@ a {
 }
 
 .textfield {
-  height: 82vh;
+  /* height: 82vh; */
+  height: 100%;
   margin-bottom: 0.8rem;
   /* overflow: scroll; */
   background-color: #fff;
@@ -231,9 +232,9 @@ a {
 }
 
 @media screen and (max-width: 540px) {
-  .textfield {
+  /* .textfield {
     height: 88vh;
-  }
+  } */
 }
 
 @media screen and (max-width: 420px) {
@@ -249,8 +250,8 @@ a {
 }
 
 @media screen and (max-width: 370px) {
-  .textfield {
+  /* .textfield {
     height: 93vh;
-  }
+  } */
 }
 </style>

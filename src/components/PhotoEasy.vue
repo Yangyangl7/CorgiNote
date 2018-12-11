@@ -5,11 +5,7 @@
     </label>
     <button v-if="file" class="btn btn-upload" @click="uploadImg(note)">Upload Image > 1 Mb</button>
 
-    <li
-      v-for="imgUrlOne in note.imgUrls "
-      :key="imgUrlOne"
-      style="list-style-type: none; display: inline-block;position:relative;top:0.9rem;"
-    >
+    <li v-for="imgUrlOne in note.imgUrls " :key="imgUrlOne" class="photo-thumbnail">
       <div class="image-frame">
         <img :src="imgUrlOne" width="50px" class="upload-image">
       </div>
@@ -224,5 +220,12 @@ button.btn-upload {
   background-color: #e0903e;
   text-transform: unset;
   font-size: 0.8rem;
+}
+
+li.photo-thumbnail {
+  list-style-type: none;
+  display: inline-block;
+  position: relative;
+  top: 0.9rem;
 }
 </style>
