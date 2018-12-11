@@ -9,7 +9,6 @@
                   type="text"
                   v-model="inputComment"
                   placeholder="Add comment"
-                  @keyup.enter="saveComment(inputComment)"
                 >
                 <i class="small material-icons submit-button prefix" @click="saveComment(inputComment)">edit</i>
               </div>
@@ -27,9 +26,18 @@
             </div>
         </form> -->
         <li class="collection-item" v-for="comment in orderedComments" :key="comment.id">
-            <!-- <h5 v-if="user != comment.author">{{comment.content}}</h5> -->
-            <h6>{{comment.author}}</h6>
-            <h5>{{comment.content}}</h5>
+            <span v-if="user != comment.author">
+                <h6>{{comment.author}}</h6>
+                <h5>{{comment.content}}</h5>
+            </span>
+            
+            <span v-if="user === comment.author">
+                <span>
+                    <i class="material-icons left" style="margin-top:13px; font-size:1rem"  @click="deleteComment(comment.id)">delete</i>
+                </span>
+                <h6>{{comment.author}}</h6>
+                <h5>{{comment.content}}</h5>
+            </span>
             <!-- <form v-if="user === comment.author" class="col s12" @submit.prevent="editComment(inputComment, comment.id)">
                 <div class="row">
                     <div class="input-field col s6">

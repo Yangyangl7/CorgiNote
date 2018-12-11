@@ -29,6 +29,12 @@
         <!-- <button class="btn btn-danger" @click="removeNote()">Remove</button>
         <button class="btn btn-success" @click="saveNote()">Save</button>-->
         <photo-easy :note="note"/>
+        <div v-if="newlyCreated">
+        
+        </div>
+        <div v-else>
+        <Comment></Comment>
+        </div>
       </div>
       <div v-else>
         <h5>Please create new Note...</h5>
@@ -45,13 +51,14 @@
 <script>
 import PhotoEasy from "./PhotoEasy.vue";
 import "firebase/firestore";
-import firebase from "firebase/app";
+// import firebase from "firebase/app";
 
 import { db, auth } from "@/firebase/init";
 import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
 import "quill/dist/quill.bubble.css";
 import { quillEditor } from "vue-quill-editor";
+import Comment from "./Comment.vue";
 
 const noteCollection = db.collection("notes");
 
@@ -59,9 +66,10 @@ export default {
   name: "Note",
   components: {
     PhotoEasy,
-    quillEditor
+    quillEditor,
+    Comment
   },
-  props: ["note", "noteId", "courseId"],
+  props: ["note", "noteId", "courseId","newlyCreated"],
   data() {
     return {
       content: "<h2>I am Example</h2>",

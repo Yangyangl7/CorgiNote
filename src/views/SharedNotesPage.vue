@@ -1,94 +1,97 @@
 <template>
-    <div class="container">
-        <div v-if="sharedNotes.length === 0">
-            <img class="corgi-courses" src="@/assets/newNote.png" alt="new note icon" width="220">
-            <div class="row">
-                <div class="col s12">
-                    <h5>Woof... {{ this.courseName }} has not created any notes.</h5>
-                </div>
-            </div>
-        </div>
+  <div class="container">
+    <div v-if="sharedNotes.length === 0">
+      <img class="corgi-courses" src="@/assets/newNote.png" alt="new note icon" width="220">
+      <div class="row">
         <div class="col s12">
-            <div v-if="sharedNotes.length !== 0">
-                <h5 class="course-note">{{ this.courseName }}</h5>
-                <div class="note-container col s12 m6 l6" v-for="note in sharedNotes" :key="note.index">
-                    <ul class="card">
-                        <!-- <li
+          <h5>Woof... {{ this.courseName }} has not created any notes.</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col s12">
+      <div v-if="sharedNotes.length !== 0">
+        <h5 class="course-note">{{ this.courseName }}</h5>
+        <div class="note-container col s12 m6 l6" v-for="note in sharedNotes" :key="note.index">
+          <ul class="card">
+            <!-- <li
                         class="card-content"
                         :class="{ 'active': index === activeNote}"
                         @click="changeNote(index)"
                         >
                             <span class="dot"></span>
-                            <span class="remove">&times;</span> -->
-                            <router-link
-                                :to="{name: 'CommentNote', params: { noteId:note.id, courseId:courseId}}"
-                            >
-                                <div class="note-title">{{ note.title | titleSnippet }}</div>
-                                <div class="note-content">{{ note.content | snippet}}</div>
-                            </router-link>
-                        <!-- </li> -->
-                    </ul>
-                </div>
-            </div>
+            <span class="remove">&times;</span>-->
+            <li class="card-content">
+              <router-link
+                :to="{name: 'CommentNote', params: { noteId:note.id, courseId:courseId}}"
+              >
+                <!-- <div class="note-title">{{ note.title | titleSnippet }}</div> -->
+                <!-- <div class="note-content">{{ note.content | snippet}}</div> -->
+                <div class="note-title">{{ note.content | getText | titleSnippet }}</div>
+                <div class="note-date">{{ note.date | getDate }}</div>
+              </router-link>
+            </li>
+            <!-- </li> -->
+          </ul>
         </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-import {db} from "@/firebase/init";
+import { db } from "@/firebase/init";
 
 export default {
-    name: "SharedNoteList",
-    data () {
-        return {
-            searchUser: this.$route.params.userId,
-            courseId: this.$route.params.courseId,
-            courseName: this.$route.params.courseName,
-            sharedNotes: []
-        };
-    },
-    created () {
-        let self = this;
+  name: "SharedNoteList",
+  data() {
+    return {
+      searchUser: this.$route.params.userId,
+      courseId: this.$route.params.courseId,
+      courseName: this.$route.params.courseName,
+      sharedNotes: []
+    };
+  },
+  created() {
+    let self = this;
 
-        db.collection("notes")
-            .orderBy("date")
-            .where("courseId", "==", self.courseId)
-            .onSnapshot(snapshot => {
-                snapshot.docChanges().forEach(change => {
-                    if (change.type === "added") {
-                        let doc = change.doc;
-                        self.sharedNotes.unshift({
-                            id: doc.id,
-                            content: doc.data().content,
-                            title: doc.data().title,
-                            date: doc.data().date
-                        });
-                    }
-                    if (change.type === "removed") {
-                        self.sharedNotes = self.sharedNotes.filter(note => {
-                            return note.id != change.doc.id;
-                        });
-                    }
-                    if (change.type === "modified") {
-                        let doc = change.doc;
-                        self.sharedNotes = self.sharedNotes.filter(note => {
-                            return note.id != doc.id;
-                        })
-                        self.sharedNotes.unshift({
-                            id: doc.id,
-                            content: doc.data().content,
-                            title: doc.data().title,
-                            date: new Date().toLocaleString()
-                        });
-                    }
-                });
+    db.collection("notes")
+      .orderBy("date")
+      .where("courseId", "==", self.courseId)
+      .onSnapshot(snapshot => {
+        snapshot.docChanges().forEach(change => {
+          if (change.type === "added") {
+            let doc = change.doc;
+            self.sharedNotes.unshift({
+              id: doc.id,
+              content: doc.data().content,
+              // title: doc.data().title,
+              date: doc.data().date
             });
-    }
-}
+          }
+          if (change.type === "removed") {
+            self.sharedNotes = self.sharedNotes.filter(note => {
+              return note.id != change.doc.id;
+            });
+          }
+          if (change.type === "modified") {
+            let doc = change.doc;
+            self.sharedNotes = self.sharedNotes.filter(note => {
+              return note.id != doc.id;
+            });
+            self.sharedNotes.unshift({
+              id: doc.id,
+              content: doc.data().content,
+              // title: doc.data().title,
+              date: new Date().toLocaleString()
+            });
+          }
+        });
+      });
+  }
+};
 </script>
 
 <style scoped>
-
 .list {
   margin: 20px;
 }
@@ -247,5 +250,4 @@ h6 {
     bottom: 1.8rem;
   }
 }
-
 </style>
