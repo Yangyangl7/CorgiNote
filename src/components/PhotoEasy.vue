@@ -6,16 +6,22 @@
     <button v-if="file" class="btn btn-upload" @click="uploadImg(note)">Upload Image > 1 Mb</button>
 
 
-      <lightbox :images="images"></lightbox>
+    <div class="lightbox-overlay" v-if="overlayActive" @click.self="closeOverlay">
+     <div  @click.self="closeOverlay" style= "margin-top: 80px;">
+       <img :src="currentImage" width="50%" />
+     </div>
+    </div>
+
+
+
 
     <li
       v-for="imgUrlOne in note.imgUrls "
       :key="imgUrlOne"
       style="list-style-type: none; display: inline-block;position:relative;top:0.9rem;"
     >
-      <div class="image-frame">
-
-        <!-- <img :src="imgUrlOne" width="50px" class="upload-image"> -->
+      <div class="image-frame" @click="clickImage(imgUrlOne)">
+        <img :src="imgUrlOne" width="50px" class="upload-image">
 
       </div>
       <!-- <button class="btn btn-danger" @click="deleteImg(imgUrlOne,note)">delete</button> -->
@@ -45,7 +51,8 @@ export default {
   props: ["note"],
   data() {
     return {
-      images: [],
+      currentImage: "",
+      overlayActive: false,
       imgUrl: null,
       imgNames: [],
       imgUrls: [],
@@ -55,6 +62,13 @@ export default {
 
 
   methods: {
+    closeOverlay() {
+      this.overlayActive = false;
+    },
+    clickImage(src) {
+      this.currentImage = src;
+      this.overlayActive = true;
+    },
     onChange(files) {
       this.imgUrl = URL.createObjectURL(files[0]);
       this.file = files[0];
@@ -122,10 +136,7 @@ export default {
           // Upload completed successfully, now we can get the download URL
           uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
             note.imgUrls.push(downloadURL);
-            var image = {
-              src: downloadURL
-            }
-            self.images.push(image);
+
             self.$toasted.show("Photo Has Been Saved Successfully.", {
               theme: "toasted-primary",
               position: "top-center",
@@ -143,6 +154,10 @@ export default {
 <style scoped>
 img.upload-image {
   transition: all linear 0.2s;
+}
+
+.upload-image .ul {
+
 }
 
 .image-frame {
@@ -233,5 +248,18 @@ button.btn-upload {
   background-color: #e0903e;
   text-transform: unset;
   font-size: 0.8rem;
+}
+
+.lightbox-overlay {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,0.9);
+	text-align: center;
+	padding: 20px;
+    box-sizing: border-box;
+
 }
 </style>
