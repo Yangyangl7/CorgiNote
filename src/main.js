@@ -5,7 +5,9 @@ import router from './router'
 import firebase from 'firebase/app'
 import './registerServiceWorker'
 import Toasted from 'vue-toasted';
+import lightbox from 'vlightbox';
 
+Vue.use(lightbox);
 Vue.use(Toasted);
 
 Vue.config.productionTip = false;

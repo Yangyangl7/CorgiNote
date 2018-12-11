@@ -5,13 +5,18 @@
     </label>
     <button v-if="file" class="btn btn-upload" @click="uploadImg(note)">Upload Image > 1 Mb</button>
 
+
+      <lightbox :images="images"></lightbox>
+
     <li
       v-for="imgUrlOne in note.imgUrls "
       :key="imgUrlOne"
       style="list-style-type: none; display: inline-block;position:relative;top:0.9rem;"
     >
       <div class="image-frame">
-        <img :src="imgUrlOne" width="50px" class="upload-image">
+
+        <!-- <img :src="imgUrlOne" width="50px" class="upload-image"> -->
+
       </div>
       <!-- <button class="btn btn-danger" @click="deleteImg(imgUrlOne,note)">delete</button> -->
       <span class="dot"></span>
@@ -28,7 +33,6 @@
 
 <script>
 import firebase from "firebase/app";
-
 import "firebase/firestore";
 import "firebase/storage";
 import { storage } from "../firebase/init";
@@ -41,12 +45,14 @@ export default {
   props: ["note"],
   data() {
     return {
+      images: [],
       imgUrl: null,
       imgNames: [],
       imgUrls: [],
       file: null
     };
   },
+
 
   methods: {
     onChange(files) {
@@ -116,7 +122,10 @@ export default {
           // Upload completed successfully, now we can get the download URL
           uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
             note.imgUrls.push(downloadURL);
-
+            var image = {
+              src: downloadURL
+            }
+            self.images.push(image);
             self.$toasted.show("Photo Has Been Saved Successfully.", {
               theme: "toasted-primary",
               position: "top-center",
