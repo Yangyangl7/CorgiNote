@@ -25,7 +25,7 @@
               <span class="dot"></span>
               <span class="remove" @click="removeNote(note.id)">&times;</span>
               <router-link
-                :to="{name: 'Note', params: {note: note,noteId:index,courseId:note.courseId}}"
+                :to="{name: 'Note', params: {note:note, noteId:index, courseId:note.courseId}}"
               >
                 <!-- <div class="note-title">{{ note.title | titleSnippet }}</div> -->
                 <div class="note-title">{{ note.content | getText | titleSnippet }}</div>

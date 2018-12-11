@@ -29,7 +29,7 @@
         <!-- <button class="btn btn-danger" @click="removeNote()">Remove</button>
         <button class="btn btn-success" @click="saveNote()">Save</button>-->
         <photo-easy :note="note"/>
-        <Comment></Comment>
+        <Comment :noteId1="noteId1"></Comment>
       </div>
       <div v-else>
         <h5>Please create new Note...</h5>
@@ -64,7 +64,7 @@ export default {
     quillEditor,
     Comment
   },
-  props: ["note", "noteId", "courseId"],
+  props: ["note", "noteId", "courseId", "noteId1"],
   data() {
     return {
       content: "<h2>I am Example</h2>",

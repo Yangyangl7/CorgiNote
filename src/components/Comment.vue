@@ -57,7 +57,7 @@ export default {
             user: auth.currentUser.email,
             inputComment: "",
             comments:[],
-            noteId: this.$route.params.noteId,
+            noteId: this.noteId1,
         }
     },
     computed: {
@@ -67,6 +67,7 @@ export default {
     },
     created () {
         let self = this;
+        console.log(self.noteId)
         db
         .collection("comments")
         .where("noteId", "==", self.noteId)
