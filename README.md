@@ -51,16 +51,16 @@ along with a very brief caption:**
 ![](https://media.giphy.com/media/o0vwzuFwCGAFO/giphy.gif) -->
 
 ***Mobile View 1 - Courses Page***
-![Courses Page](/screenshot/1_courses.jpeg?raw=true "Courses Page")
+![Courses Page](/screenshot/1_courses.jpeg?raw=true "Courses Page") <!-- .element width="50%" -->
 
 ***Mobile View 2 - Create Note Page***
-![Note Page](/screenshot/2_createNote.png?raw=true "Note Page")
+![Note Page](/screenshot/2_createNote.png?raw=true "Note Page") <!-- .element width="50%" -->
 
 ***Mobile View 3 - View Shared Notes***
-![View Shared Notes](/screenshot/3_sharedNotes.jpeg?raw=true "View Shared Notes")
+![View Shared Notes](/screenshot/3_sharedNotes.jpeg?raw=true "View Shared Notes") <!-- .element width="50%" -->
 
 ***Mobile View 4 - View Comments***
-![View Comments](/screenshot/4_viewComments.png?raw=true "View Comments")
+![View Comments](/screenshot/4_viewComments.png?raw=true "View Comments") <!-- .element width="50%" -->
 
 
 ## Paper Prototype
