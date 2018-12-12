@@ -1,6 +1,5 @@
 <template>
   <div style="margin-top:5px;display:inline-block;" class="photo-easy">
-
     <span v-if=" user === note.author || newly ">
       <label v-if="!file" class="custom-file-upload btn">
         <input type="file" accept="image/*" capture @change="onChange($event.target.files)">Choose File
@@ -19,8 +18,10 @@
         <img :src="imgUrlOne" width="50px" class="upload-image">
       </div>
       <!-- <button class="btn btn-danger" @click="deleteImg(imgUrlOne,note)">delete</button> -->
-      <span class="dot"></span>
-      <span class="remove" @click="deleteImg(imgUrlOne,note)">&times;</span>
+      <span v-if=" user === note.author">
+        <span class="dot"></span>
+        <span class="remove" @click="deleteImg(imgUrlOne,note)">&times;</span>
+      </span>
     </li>
 
     <!-- <p>
@@ -201,13 +202,13 @@ img.upload-image {
   cursor: pointer;
 }
 
-.image-frame:hover ~ .dot,
-.image-frame:focus ~ .dot {
+.image-frame:hover ~ span .dot,
+.image-frame:focus ~ span .dot {
   background-color: rgba(241, 211, 159, 1);
 }
 
-.image-frame:hover ~ .remove,
-.image-frame:focus ~ .remove {
+.image-frame:hover ~ span .remove,
+.image-frame:focus ~ span .remove {
   color: #eb8d21;
 }
 
