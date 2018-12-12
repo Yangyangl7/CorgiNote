@@ -51,7 +51,7 @@ along with a very brief caption:**
 ![](https://media.giphy.com/media/o0vwzuFwCGAFO/giphy.gif) -->
 
 ***Mobile View 1 - Courses Page***
-![Courses Page](/screenshot/1_courses.jpeg?raw=true "Courses Page")
+![Courses Page](/screenshot/1_courses.jpeg | width=100)
 
 ***Mobile View 2 - Create Note Page***
 ![Note Page](/screenshot/2_createNote.png?raw=true "Note Page")
@@ -73,7 +73,7 @@ along with a very brief caption:**
 **Here are the web view mockups and the mobile view wireframes of our app:**
 
 ***Web View 1 - Sign Up Page***
-![Sign Up Page](/prototype/1_signUpPage.png =250x?raw=true "Sign Up Page")
+![Sign Up Page](/prototype/1_signUpPage.png?raw=true "Sign Up Page")
 
 ***Web View 2 - Note Page***
 ![Note Page](/prototype/2_notePage.png?raw=true "Note Page")
