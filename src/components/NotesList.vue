@@ -267,7 +267,7 @@ h6 {
 
 @media screen and (max-width: 320px) {
   .corgi-courses {
-    margin-top: 0;
+    margin-top: 2rem;
   }
   img {
     width: 120px;

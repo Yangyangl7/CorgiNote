@@ -470,6 +470,20 @@ i.prefix {
   .course-list .col {
     padding: 0 0.2rem;
   }
+  .corgi-courses {
+    margin-top: 0;
+  }
+  h5 {
+    margin-top: 1rem;
+  }
+
+  .search-container {
+    padding: 0.5rem 2rem;
+  }
+  i.prefix {
+    top: 0.9em;
+    right: 1rem;
+  }
 }
 
 @media screen and (max-width: 320px) {
@@ -488,20 +502,20 @@ i.prefix {
   }
 
   .card {
-    height: 10rem;
-    width: 10rem;
+    height: 9.5rem;
+    width: 9.5rem;
   }
 
   .card .card-content {
-    padding: 6px;
+    padding: 4px;
   }
 
   .dot {
-    right: 0.5rem;
+    right: 0.3rem;
     top: -1rem;
   }
   .remove {
-    right: 0.7rem;
+    right: 0.5rem;
     top: -1.3rem;
   }
 }
