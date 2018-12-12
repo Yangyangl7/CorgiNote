@@ -70,12 +70,12 @@ export default {
       let self = this;
       var desertRef = storage.refFromURL(imgUrl);
       desertRef.delete().then(function() {
-        self.$toasted.show("Photo Has Been Removed Successfully.", {
+        // File deleted successfully
+      });
+      self.$toasted.show("Click Save to Confirm Remove", {
           theme: "toasted-primary",
           position: "top-center",
           duration: 3000
-        });
-        // File deleted successfully
       });
       note.imgUrls = note.imgUrls.filter(function(e) {
         return e != imgUrl;
@@ -132,7 +132,7 @@ export default {
             
             note.imgUrls.push(downloadURL);
 
-            self.$toasted.show("Photo Has Been Saved Successfully.", {
+            self.$toasted.show("Click Save to Confirm Upload.", {
               theme: "toasted-primary",
               position: "top-center",
               duration: 3000
