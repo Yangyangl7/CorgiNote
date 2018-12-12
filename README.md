@@ -45,26 +45,22 @@ Which progressive web app feature(s) does your app support?
 
 ## Screenshots of Site
 
-<!-- **[Add a screenshot of each key page (maximum 4)](https://stackoverflow.com/questions/10189356/how-to-add-screenshot-to-readmes-in-github-repository)
-along with a very brief caption:**
 
-![](https://media.giphy.com/media/o0vwzuFwCGAFO/giphy.gif) -->
-
-
-<img src="/screenshot/1_courses.jpeg" width="200px">
 ***Mobile View 1 - Courses Page***
+<img src="/screenshot/1_courses.jpeg" width="300px">
 
 
-<img src="/screenshot/2_createNote.png" width="200px">
-***Mobile View 2 - Create Note Page***
+***Mobile View 1 - Courses Page***
+<img src="/screenshot/2_createNote.png" width="300px">
 
 
-<img src="/screenshot/3_sharedNotes.jpeg" width="200px">
-***Mobile View 3 - View Shared Notes***
+***Mobile View 1 - Courses Page***
+<img src="/screenshot/3_sharedNotes.jpeg" width="300px">
 
 
-<img src="/screenshot/4_viewComments.png" width="200px">
 ***Mobile View 4 - View Comments***
+<img src="/screenshot/4_viewComments.png" width="300px">
+
 
 
 ## Paper Prototype
