@@ -20,7 +20,7 @@
       </div>
       <!-- <button class="btn btn-danger" @click="deleteImg(imgUrlOne,note)">delete</button> -->
       <span class="dot"></span>
-      <span class="remove" @click="deleteImg(imgUrlOne,note)">&times;</span>
+      <span v-if=" user === note.author || newly " class="remove" @click="deleteImg(imgUrlOne,note)">&times;</span>
     </li>
 
     <!-- <p>
@@ -128,6 +128,7 @@ export default {
           }
         },
         function() {
+          let self = this;
           // Upload completed successfully, now we can get the download URL
           uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
             note.imgUrls.push(downloadURL);
