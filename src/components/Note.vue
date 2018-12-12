@@ -28,7 +28,7 @@
         <!-- <p> {{note.date.toDate()}}</p> -->
         <!-- <button class="btn btn-danger" @click="removeNote()">Remove</button>
         <button class="btn btn-success" @click="saveNote()">Save</button>-->
-        <photo-easy :note="note"/>
+        <photo-easy :note="note" :newly="newlyCreated"/>
         <div v-if="newlyCreated"></div>
         <div v-else>
           <Comment></Comment>
@@ -67,10 +67,11 @@ export default {
     quillEditor,
     Comment
   },
-  props: ["note", "noteId", "courseId", "newlyCreated"],
+  props: ["note", "noteId", "courseId"],
   data() {
     return {
-      content: "<h2>I am Example</h2>",
+      newlyCreated: this.$route.params.newlyCreated,
+      content: "",
       editorOption: {
         // some quill options
         modules: {

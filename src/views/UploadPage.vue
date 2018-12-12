@@ -57,6 +57,7 @@ export default {
   methods: {
     addNote() {
       this.notes.unshift({
+        author: "",
         // title: "",
         content: "",
         date: "",
@@ -111,6 +112,7 @@ export default {
         snapshot.forEach(doc => {
           this.notes.unshift({
             id: doc.id,
+            author: doc.data().author,
             // title: doc.data().title,
             content: doc.data().content,
             date: doc.data().date,

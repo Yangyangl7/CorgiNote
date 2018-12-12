@@ -1,7 +1,7 @@
 <template>
   <div style="margin-top:5px;display:inline-block;" class="photo-easy">
 
-    <span v-if="user === note.author || !note.author">
+    <span v-if=" user === note.author || newly ">
       <label v-if="!file" class="custom-file-upload btn">
         <input type="file" accept="image/*" capture @change="onChange($event.target.files)">Choose File
       </label>
@@ -43,7 +43,7 @@ var storageRef = storage.ref();
 
 export default {
   name: "PhotoEasy",
-  props: ["note"],
+  props: ["note", "newly"],
   data() {
     return {
       user: auth.currentUser.email,
