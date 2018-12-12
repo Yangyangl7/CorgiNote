@@ -47,18 +47,22 @@ Which progressive web app feature(s) does your app support?
 
 
 ***Mobile View 1 - Courses Page***
+<br><br>
 <img src="/screenshot/1_courses.jpeg" width="300px">
 
 
 ***Mobile View 1 - Courses Page***
+<br><br>
 <img src="/screenshot/2_createNote.png" width="300px">
 
 
 ***Mobile View 1 - Courses Page***
+<br><br>
 <img src="/screenshot/3_sharedNotes.jpeg" width="300px">
 
 
 ***Mobile View 4 - View Comments***
+<br><br>
 <img src="/screenshot/4_viewComments.png" width="300px">
 
 
