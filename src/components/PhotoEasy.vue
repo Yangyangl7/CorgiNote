@@ -18,7 +18,7 @@
         <img :src="imgUrlOne" width="50px" class="upload-image">
       </div>
       <!-- <button class="btn btn-danger" @click="deleteImg(imgUrlOne,note)">delete</button> -->
-      <span v-if=" user === note.author">
+      <span v-if=" user === note.author || newly ">
         <span class="dot"></span>
         <span class="remove" @click="deleteImg(imgUrlOne,note)">&times;</span>
       </span>
