@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <li v-for="imgUrlOne in note.imgUrls " :key="imgUrlOne" class="photo-thumbnail">
+    <li v-for="imgUrlOne in imgUrls " :key="imgUrlOne" class="photo-thumbnail">
       <div class="image-frame" @click="clickImage(imgUrlOne)">
         <img :src="imgUrlOne" width="50px" class="upload-image">
       </div>
@@ -50,11 +50,10 @@ export default {
       overlayActive: false,
       imgUrl: null,
       imgNames: [],
-      imgUrls: [],
+      imgUrls: this.note.imgUrls,
       file: null
     };
   },
-
   methods: {
     closeOverlay() {
       this.overlayActive = false;
@@ -81,6 +80,7 @@ export default {
       note.imgUrls = note.imgUrls.filter(function(e) {
         return e != imgUrl;
       });
+      self.imgUrls = note.imgUrls;
     },
     uploadImg(note) {
       let self = this;
@@ -130,7 +130,7 @@ export default {
           // Upload completed successfully, now we can get the download URL
           uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
             
-            self.note.imgUrls.push(downloadURL);
+            note.imgUrls.push(downloadURL);
 
             self.$toasted.show("Photo Has Been Saved Successfully.", {
               theme: "toasted-primary",
