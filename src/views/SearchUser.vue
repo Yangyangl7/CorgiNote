@@ -204,6 +204,14 @@ h5 {
   img {
     width: 130px;
   }
+  .card {
+    height: 10rem;
+    width: 10rem;
+  }
+
+  .card .card-content {
+    padding: 7px;
+  }
 }
 
 @media screen and (max-width: 375px) {

@@ -456,6 +456,15 @@ i.prefix {
     padding: 1rem 4rem;
   }
 
+  .card {
+    height: 10rem;
+    width: 10rem;
+  }
+
+  .card .card-content {
+    padding: 7px;
+  }
+
   i.prefix {
     top: 1.4em;
     right: 3rem;
@@ -463,6 +472,15 @@ i.prefix {
 
   ::placeholder {
     font-size: 0.9rem;
+  }
+
+  .dot {
+    right: 0.3rem;
+    top: -1rem;
+  }
+  .remove {
+    right: 0.5rem;
+    top: -1.3rem;
   }
 }
 
