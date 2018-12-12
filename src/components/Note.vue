@@ -91,6 +91,7 @@ export default {
   methods: {
     saveNote() {
       // this.note.imgUrls=[];
+      this.note.author = auth.currentUser.email;
       this.note.courseId = this.courseId;
       this.note.userId = auth.currentUser.uid;
       // this.note.date = firebase.firestore.FieldValue.serverTimestamp();

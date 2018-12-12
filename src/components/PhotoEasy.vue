@@ -1,9 +1,12 @@
 <template>
   <div style="margin-top:5px;display:inline-block;" class="photo-easy">
-    <label v-if="!file" class="custom-file-upload btn">
-      <input type="file" accept="image/*" capture @change="onChange($event.target.files)">Choose File
-    </label>
-    <button v-if="file" class="btn btn-upload" @click="uploadImg(note)">Upload Image > 1 Mb</button>
+
+    <span v-if="user === note.author || !note.author">
+      <label v-if="!file" class="custom-file-upload btn">
+        <input type="file" accept="image/*" capture @change="onChange($event.target.files)">Choose File
+      </label>
+      <button v-if="file" class="btn btn-upload" @click="uploadImg(note)">Upload Image > 1 Mb</button>
+    </span>
 
     <div class="lightbox-overlay" v-if="overlayActive" @click.self="closeOverlay">
       <div @click.self="closeOverlay" class="overlay-img">
@@ -29,6 +32,7 @@
 </template>
 
 <script>
+import { auth } from "@/firebase/init";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/storage";
@@ -42,6 +46,7 @@ export default {
   props: ["note"],
   data() {
     return {
+      user: auth.currentUser.email,
       currentImage: "",
       overlayActive: false,
       imgUrl: null,

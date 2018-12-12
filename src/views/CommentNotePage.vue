@@ -15,6 +15,7 @@
         ></quill-editor>
       </div>
       <!-- <h5 class="content">{{this.content}}</h5> -->
+       <photo-easy :note="note"/>
       <Comment></Comment>
     </div>
   </div>
@@ -22,6 +23,8 @@
 
 <script>
 import { db } from "@/firebase/init";
+
+import PhotoEasy from "../components/PhotoEasy.vue";
 
 import Comment from "../components/Comment.vue";
 import "quill/dist/quill.core.css";
@@ -32,12 +35,14 @@ import { quillEditor } from "vue-quill-editor";
 export default {
   name: "CommentNotePage",
   components: {
+    PhotoEasy,
     Comment,
     quillEditor
   },
   data() {
     return {
       content: "<h2>I am Example</h2>",
+      note: this.$route.params.note,
       noteId: this.$route.params.noteId,
       courseId: this.$route.params.courseId,
       editorOption: {
