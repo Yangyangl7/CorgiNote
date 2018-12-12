@@ -6,7 +6,7 @@ CSCI 5117, Fall 2018, [assignment description](https://docs.google.com/document/
 
 * Team Name: Mooncake
 * App Name: Corgi Note
-* App Link: <https://TODO.firebaseapp.com/>
+* App Link: <https://corgi-note.firebaseapp.com>
 
 ### Students
 
@@ -31,7 +31,9 @@ Which device integration(s) does your app support?
 
 Which progressive web app feature(s) does your app support?
 
-* ...
+* Full responsiveness and browser compatibility: Our app is built according to progressive enhancement principles.
+* App-like interface: Our app mimic navigation and interactions of native apps.
+
 
 
 ## Testing Notes
