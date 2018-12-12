@@ -51,7 +51,7 @@ along with a very brief caption:**
 ![](https://media.giphy.com/media/o0vwzuFwCGAFO/giphy.gif) -->
 
 ***Mobile View 1 - Courses Page***
-![Courses Page](/screenshot/1_courses.jpeg | width=100)
+![Courses Page](/screenshot/1_courses.jpeg?raw=true "Courses Page")
 
 ***Mobile View 2 - Create Note Page***
 ![Note Page](/screenshot/2_createNote.png?raw=true "Note Page")
