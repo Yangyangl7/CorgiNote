@@ -102,14 +102,24 @@ export default {
       } else {
         this.createNote(note);
       }
-
-      this.$toasted.show("Note Has Been Saved Successfully.", {
-        theme: "toasted-primary",
-        position: "top-center",
-        duration: 1500
-      });
+      if (this.note.content.trim().length == 0) {
+        this.$toasted.show("Note Is Still Empty.", {
+          theme: "toasted-primary",
+          position: "top-center",
+          duration: 1500
+        });
+      } else {
+        this.$toasted.show("Note Has Been Saved Successfully.", {
+          theme: "toasted-primary",
+          position: "top-center",
+          duration: 1500
+        });
+      }
     },
     updateNote(note) {
+      if (note.content.trim().length == 0) {
+        return;
+      }
       noteCollection.doc(note.id).update({
         // title: note.title,
         content: note.content,
@@ -119,6 +129,9 @@ export default {
       });
     },
     createNote(note) {
+      if (note.content.trim().length == 0) {
+        return;
+      }
       noteCollection.add(note);
     },
     removeNote() {

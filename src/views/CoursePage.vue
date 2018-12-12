@@ -35,7 +35,7 @@
       </div>
       <div v-if="myCourses.length != 0">
         <h5 style="margin-top:3.2rem;margin-bottom:2rem">Courses You Have Created</h5>
-        <div class="row">
+        <div class="row course-list">
           <div class="col s6 m4 l3" v-for="course in myCourses" :key="course.id">
             <ul class="card" style="margin-right:auto;margin-left:auto">
               <li class="card-content" style="position:relative">
@@ -424,22 +424,6 @@ i.prefix {
   background-color: #eb8d21;
 }
 
-/* #toast-container {
-  display: block;
-  position: fixed;
-  z-index: 10000;
-  /* top: 10%;
-  left: 50%;
-  transform: translateX(-50%); */
-
-/* @media only screen and (min-width: 993px) {
-  #toast-container {
-    top: 10%;
-    right: 50%;
-    max-width: 86%;
-  }
-} */
-
 @media screen and (max-width: 600px) {
   .btn-course {
     bottom: 5.8rem;
@@ -472,6 +456,15 @@ i.prefix {
     padding: 1rem 4rem;
   }
 
+  .card {
+    height: 10rem;
+    width: 10rem;
+  }
+
+  .card .card-content {
+    padding: 7px;
+  }
+
   i.prefix {
     top: 1.4em;
     right: 3rem;
@@ -479,6 +472,35 @@ i.prefix {
 
   ::placeholder {
     font-size: 0.9rem;
+  }
+
+  .dot {
+    right: 0.3rem;
+    top: -1rem;
+  }
+  .remove {
+    right: 0.5rem;
+    top: -1.3rem;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .course-list .col {
+    padding: 0 0.2rem;
+  }
+  .corgi-courses {
+    margin-top: 0;
+  }
+  h5 {
+    margin-top: 1rem;
+  }
+
+  .search-container {
+    padding: 0.5rem 2rem;
+  }
+  i.prefix {
+    top: 0.9em;
+    right: 1rem;
   }
 }
 
@@ -488,6 +510,31 @@ i.prefix {
   }
   h5 {
     margin-top: 1.2rem;
+  }
+  .search-container {
+    padding: 1rem 2rem;
+  }
+  i.prefix {
+    top: 1.4em;
+    right: 1rem;
+  }
+
+  .card {
+    height: 9.5rem;
+    width: 9.5rem;
+  }
+
+  .card .card-content {
+    padding: 4px;
+  }
+
+  .dot {
+    right: 0.3rem;
+    top: -1rem;
+  }
+  .remove {
+    right: 0.5rem;
+    top: -1.3rem;
   }
 }
 </style>

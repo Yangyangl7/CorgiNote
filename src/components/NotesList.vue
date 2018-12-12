@@ -256,11 +256,18 @@ h6 {
   h5.course-note {
     width: 20rem;
   }
+
+  .note-title {
+    font-size: 1rem;
+  }
+  .note-date {
+    font-size: 0.8rem;
+  }
 }
 
 @media screen and (max-width: 320px) {
   .corgi-courses {
-    margin-top: 0;
+    margin-top: 2rem;
   }
   img {
     width: 120px;
@@ -272,6 +279,15 @@ h6 {
   }
   .btn-course {
     bottom: 1.8rem;
+  }
+  h5.course-note {
+    width: 18rem;
+  }
+  .note-title {
+    font-size: 1rem;
+  }
+  .note-date {
+    font-size: 0.8rem;
   }
 }
 </style>
