@@ -51,12 +51,12 @@ Which progressive web app feature(s) does your app support?
 <img src="/screenshot/1_courses.jpeg" width="300px">
 
 
-***Mobile View 1 - Courses Page***
+***Mobile View 2 - Create Note Page***
 <br><br>
 <img src="/screenshot/2_createNote.png" width="300px">
 
 
-***Mobile View 1 - Courses Page***
+***Mobile View 3 - View Shared Notes***
 <br><br>
 <img src="/screenshot/3_sharedNotes.jpeg" width="300px">
 
@@ -93,8 +93,9 @@ Which progressive web app feature(s) does your app support?
 **Document integrations with 3rd Party code or services here.
 Please do not document required libraries (e.g., Vue, Vuefire, Firebase).**
 
-* Library or service name: description of use
-* ...
+* Quilljs: We used Quilljs as an API driven rich text editor for users to create note in our app.
+* Vue Toasted: We used this toast plugin to give users some helpful feedback.
+* Materialize: We used Materialize as our front-end framework. 
 
 **If there's anything else you would like to disclose about how your project
 relied on external code, expertise, or anything else, please disclose that
