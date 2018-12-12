@@ -50,17 +50,21 @@ along with a very brief caption:**
 
 ![](https://media.giphy.com/media/o0vwzuFwCGAFO/giphy.gif) -->
 
+
+<img src="/screenshot/1_courses.jpeg" width="200px">
 ***Mobile View 1 - Courses Page***
-<img src="/screenshot/1_courses.jpeg" width="40%">
 
+
+<img src="/screenshot/2_createNote.png" width="200px">
 ***Mobile View 2 - Create Note Page***
-<img src="/screenshot/2_createNote.png" width="40%">
 
+
+<img src="/screenshot/3_sharedNotes.jpeg" width="200px">
 ***Mobile View 3 - View Shared Notes***
-<img src="/screenshot/3_sharedNotes.jpeg" width="40%">
 
+
+<img src="/screenshot/4_viewComments.png" width="200px">
 ***Mobile View 4 - View Comments***
-<img src="/screenshot/4_viewComments.png" width="40%">
 
 
 ## Paper Prototype
