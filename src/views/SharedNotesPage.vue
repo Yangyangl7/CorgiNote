@@ -23,7 +23,7 @@
               <span class="remove">&times;</span>-->
               <li class="card-content">
                 <router-link
-                  :to="{name: 'CommentNote', params: { noteId:note.id, courseId:courseId}}"
+                  :to="{name: 'CommentNote', params: { note:note, noteId:note.id, courseId:courseId}}"
                 >
                   <!-- <div class="note-title">{{ note.title | titleSnippet }}</div> -->
                   <!-- <div class="note-content">{{ note.content | snippet}}</div> -->
@@ -71,6 +71,8 @@ export default {
             let doc = change.doc;
             self.sharedNotes.unshift({
               id: doc.id,
+              author: doc.data().author,
+              imgUrls: doc.data().imgUrls,
               content: doc.data().content,
               // title: doc.data().title,
               date: doc.data().date
