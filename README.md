@@ -6,7 +6,7 @@ CSCI 5117, Fall 2018, [assignment description](https://docs.google.com/document/
 
 * Team Name: Mooncake
 * App Name: Corgi Note
-* App Link: <https://TODO.firebaseapp.com/>
+* App Link: <https://corgi-note.firebaseapp.com>
 
 ### Students
 
@@ -31,7 +31,9 @@ Which device integration(s) does your app support?
 
 Which progressive web app feature(s) does your app support?
 
-* ...
+* Full responsiveness and browser compatibility: Our app is built according to progressive enhancement principles.
+* App-like interface: Our app mimic navigation and interactions of native apps.
+
 
 
 ## Testing Notes
@@ -43,10 +45,26 @@ Which progressive web app feature(s) does your app support?
 
 ## Screenshots of Site
 
-**[Add a screenshot of each key page (maximum 4)](https://stackoverflow.com/questions/10189356/how-to-add-screenshot-to-readmes-in-github-repository)
-along with a very brief caption:**
 
-![](https://media.giphy.com/media/o0vwzuFwCGAFO/giphy.gif)
+***Mobile View 1 - Courses Page***
+<br><br>
+<img src="/screenshot/1_courses.jpeg" width="300px">
+
+
+***Mobile View 2 - Create Note Page***
+<br><br>
+<img src="/screenshot/2_createNote.png" width="300px">
+
+
+***Mobile View 3 - View Shared Notes***
+<br><br>
+<img src="/screenshot/3_sharedNotes.jpeg" width="300px">
+
+
+***Mobile View 4 - View Comments***
+<br><br>
+<img src="/screenshot/4_viewComments.png" width="300px">
+
 
 
 ## Paper Prototype
@@ -75,8 +93,9 @@ along with a very brief caption:**
 **Document integrations with 3rd Party code or services here.
 Please do not document required libraries (e.g., Vue, Vuefire, Firebase).**
 
-* Library or service name: description of use
-* ...
+* Quilljs: We used Quilljs as an API driven rich text editor for users to create note in our app.
+* Vue Toasted: We used this toast plugin to give users some helpful feedback.
+* Materialize: We used Materialize as our front-end framework. 
 
 **If there's anything else you would like to disclose about how your project
 relied on external code, expertise, or anything else, please disclose that

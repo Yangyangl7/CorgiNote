@@ -33,7 +33,7 @@
       <span v-if="user != comment.author">
         <p class="comment-author">{{comment.author}}</p>
         <p class="bull">&bull;</p>
-        <p class="comment-date">{{comment.date}}</p>
+        <p class="comment-date">{{comment.date | getDate }}</p>
         <p class="comment-content">{{comment.content}}</p>
       </span>
       

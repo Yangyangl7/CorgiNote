@@ -1,6 +1,5 @@
 <template>
   <div style="margin-top:5px;display:inline-block;" class="photo-easy">
-
     <span v-if=" user === note.author || newly ">
       <label v-if="!file" class="custom-file-upload btn">
         <input type="file" accept="image/*" capture @change="onChange($event.target.files)">Choose File
@@ -128,10 +127,10 @@ export default {
           }
         },
         function() {
-          let self = this;
           // Upload completed successfully, now we can get the download URL
           uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-            note.imgUrls.push(downloadURL);
+            
+            self.note.imgUrls.push(downloadURL);
 
             self.$toasted.show("Photo Has Been Saved Successfully.", {
               theme: "toasted-primary",
@@ -202,13 +201,13 @@ img.upload-image {
   cursor: pointer;
 }
 
-.image-frame:hover ~ .dot,
-.image-frame:focus ~ .dot {
+.image-frame:hover ~ span .dot,
+.image-frame:focus ~ span .dot {
   background-color: rgba(241, 211, 159, 1);
 }
 
-.image-frame:hover ~ .remove,
-.image-frame:focus ~ .remove {
+.image-frame:hover ~ span .remove,
+.image-frame:focus ~ span .remove {
   color: #eb8d21;
 }
 
