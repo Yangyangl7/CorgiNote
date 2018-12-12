@@ -73,7 +73,7 @@ along with a very brief caption:**
 **Here are the web view mockups and the mobile view wireframes of our app:**
 
 ***Web View 1 - Sign Up Page***
-![Sign Up Page](/prototype/1_signUpPage.png?raw=true "Sign Up Page")
+![Sign Up Page](/prototype/1_signUpPage.png =250x?raw=true "Sign Up Page")
 
 ***Web View 2 - Note Page***
 ![Note Page](/prototype/2_notePage.png?raw=true "Note Page")
