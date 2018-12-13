@@ -49,6 +49,8 @@
 <script>
 import PhotoEasy from "./PhotoEasy.vue";
 import "firebase/firestore";
+
+import "../windowsControl"
 // import firebase from "firebase/app";
 
 import { db, auth } from "@/firebase/init";
