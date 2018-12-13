@@ -18,8 +18,12 @@
         <img :src="imgUrlOne" width="50px" class="upload-image">
       </div>
       <!-- <button class="btn btn-danger" @click="deleteImg(imgUrlOne,note)">delete</button> -->
-      <span class="dot"></span>
-      <span v-if=" user === note.author || newly " class="remove" @click="deleteImg(imgUrlOne,note)">&times;</span>
+      <span v-if=" user === note.author || newly " class="dot"></span>
+      <span
+        v-if=" user === note.author || newly "
+        class="remove"
+        @click="deleteImg(imgUrlOne,note)"
+      >&times;</span>
     </li>
 
     <!-- <p>
@@ -73,9 +77,9 @@ export default {
         // File deleted successfully
       });
       self.$toasted.show("Click Save to Confirm Remove", {
-          theme: "toasted-primary",
-          position: "top-center",
-          duration: 3000
+        theme: "toasted-primary",
+        position: "top-center",
+        duration: 3000
       });
       note.imgUrls = note.imgUrls.filter(function(e) {
         return e != imgUrl;
@@ -129,7 +133,6 @@ export default {
         function() {
           // Upload completed successfully, now we can get the download URL
           uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-            
             note.imgUrls.push(downloadURL);
 
             self.$toasted.show("Click Save to Confirm Upload.", {
@@ -201,13 +204,13 @@ img.upload-image {
   cursor: pointer;
 }
 
-.image-frame:hover ~ span .dot,
-.image-frame:focus ~ span .dot {
+.image-frame:hover ~ .dot,
+.image-frame:focus ~ .dot {
   background-color: rgba(241, 211, 159, 1);
 }
 
-.image-frame:hover ~ span .remove,
-.image-frame:focus ~ span .remove {
+.image-frame:hover ~ .remove,
+.image-frame:focus ~ .remove {
   color: #eb8d21;
 }
 
