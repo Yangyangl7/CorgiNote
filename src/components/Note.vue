@@ -51,7 +51,7 @@ import PhotoEasy from "./PhotoEasy.vue";
 import "firebase/firestore";
 
 // import "../windowsControl"
-// // import firebase from "firebase/app";
+// import firebase from "firebase/app";
 
 import { db, auth } from "@/firebase/init";
 import "quill/dist/quill.core.css";
@@ -60,18 +60,19 @@ import "quill/dist/quill.bubble.css";
 import { quillEditor } from "vue-quill-editor";
 import Comment from "./Comment.vue";
 
+const noteCollection = db.collection("notes");
+
+// Windows Control
 if (window.performance) {
-    console.info("window.performance is supported");
+  console.info("window.performance is supported");
 }
-  
-  // do something based on the navigation type...
-switch(performance.navigation.type) {
-case 1:
+
+// do something based on the navigation type...
+switch (performance.navigation.type) {
+  case 1:
     console.info("TYPE_RELOAD");
     history.go(-1);
 }
-
-const noteCollection = db.collection("notes");
 
 export default {
   name: "Note",
